@@ -1,0 +1,18 @@
+{
+  "id": "/",
+  "name": "Streaks",
+  "short_name": "Streaks",
+  "description": "Today's habits, one tap to complete.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fcfcfb",
+  "theme_color": "#fcfcfb",
+  "categories": ["lifestyle", "productivity"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

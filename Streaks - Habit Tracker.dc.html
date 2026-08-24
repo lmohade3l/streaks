@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#f6f6f4;font-family:'Outfit',system-ui,sans-serif;color:#17181a;-webkit-font-smoothing:antialiased}
+a{color:#65a30d}a:hover{color:#4d7c0f}
+input,button,textarea{font-family:inherit}
+input:focus{outline:none}
+@keyframes sheetUp{from{transform:translateY(103%)}to{transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes riseIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+::-webkit-scrollbar{width:0}
+</style>
+</helmet>
+
+<div style="display:flex;gap:64px;align-items:flex-start;padding:56px 60px;min-height:100vh;box-sizing:border-box">
+
+  <div style="width:320px;flex:none;padding-top:10px">
+    <div style="font:400 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;text-transform:uppercase;color:rgba(23,24,26,.4)">Habit PWA · v1</div>
+    <h1 style="font:300 40px/1.05 'Outfit',sans-serif;letter-spacing:-.03em;margin:16px 0 0">Streaks</h1>
+    <p style="font:300 14.5px/1.65 'Outfit',sans-serif;color:rgba(23,24,26,.6);margin:14px 0 30px;text-wrap:pretty">Today's habits, one-tap completion, and a create-habit sheet. It's live — tap the rings, add a habit, watch the counts move.</p>
+
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <div>
+        <div style="font:500 10px/1 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#65a30d;margin-bottom:8px">Assumptions</div>
+        <p style="font:300 13.5px/1.65 'Outfit',sans-serif;color:rgba(23,24,26,.62);margin:0;text-wrap:pretty">Single user, offline-first, installed to the home screen. One screen carries the daily job; history and settings sit a level deeper. Calm neutral canvas so a single green is the only thing that says “done”.</p>
+      </div>
+      <div>
+        <div style="font:500 10px/1 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#65a30d;margin-bottom:8px">Decisions</div>
+        <p style="font:300 13.5px/1.65 'Outfit',sans-serif;color:rgba(23,24,26,.62);margin:0;text-wrap:pretty">Streaks are quiet numerals with a seven-day dot trail — no fire, no confetti. Count habits (water, glasses) tap up one at a time and complete themselves at target. The form is a bottom sheet: thumb-reachable, and the list stays visible behind it.</p>
+      </div>
+      <div>
+        <div style="font:500 10px/1 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#65a30d;margin-bottom:8px">Open questions</div>
+        <p style="font:300 13.5px/1.65 'Outfit',sans-serif;color:rgba(23,24,26,.62);margin:0;text-wrap:pretty">Does a missed day break the streak at midnight, or is there a grace day? Any notion of rest days for weekday-only habits? Want a week/month history view next?</p>
+      </div>
+    </div>
+  </div>
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+    <div style="position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:#fcfcfb">
+
+      <div style="flex:1;overflow:auto;padding:54px 22px 124px">
+
+        <div style="display:flex;align-items:flex-start;justify-content:space-between">
+          <div>
+            <div style="font:400 11.5px/1 'Outfit',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(23,24,26,.38)">{{ dateLabel }}</div>
+            <div style="font:300 34px/1.1 'Outfit',sans-serif;letter-spacing:-.03em;margin-top:8px">Today</div>
+          </div>
+          <div style="text-align:right;padding-top:4px">
+            <div style="font:400 24px/1 'Outfit',sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:#65a30d">{{ doneCount }}<span style="color:rgba(23,24,26,.25)">/{{ totalCount }}</span></div>
+            <div style="font:400 11px/1 'Outfit',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:rgba(23,24,26,.35);margin-top:7px">done</div>
+          </div>
+        </div>
+
+        <div style="height:3px;border-radius:99px;background:rgba(23,24,26,.07);margin:22px 0 26px;overflow:hidden">
+          <div style="height:100%;border-radius:99px;background:#65a30d;transition:width .45s cubic-bezier(.3,1.1,.4,1);width:{{ progressPct }}"></div>
+        </div>
+
+        <div style="display:flex;gap:7px;margin-bottom:30px">
+          <sc-for list="{{ week }}" as="d" hint-placeholder-count="7">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:9px">
+              <div style="font:400 11px/1 'Outfit',sans-serif;color:{{ d.labelColor }}">{{ d.label }}</div>
+              <div style="width:100%;height:32px;border-radius:10px;background:{{ d.bg }};border:1px solid {{ d.border }};display:flex;align-items:center;justify-content:center;font:400 12px/1 'Outfit',sans-serif;font-variant-numeric:tabular-nums;color:{{ d.fg }}">{{ d.value }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <sc-for list="{{ habits }}" as="h" hint-placeholder-count="5">
+            <div style="display:flex;align-items:center;gap:14px;background:{{ h.cardBg }};border:1px solid {{ h.cardBorder }};border-radius:18px;padding:15px 15px 15px 18px;transition:background .28s,border-color .28s">
+              <div style="flex:1;min-width:0">
+                <div style="font:400 16px/1.25 'Outfit',sans-serif;letter-spacing:-.015em;color:{{ h.titleColor }};text-decoration:{{ h.titleDecoration }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ h.name }}</div>
+                <div style="display:flex;align-items:center;gap:10px;margin-top:9px">
+                  <div style="display:flex;gap:4px">
+                    <sc-for list="{{ h.trail }}" as="t" hint-placeholder-count="7">
+                      <div style="width:5px;height:5px;border-radius:99px;background:{{ t.bg }}"></div>
+                    </sc-for>
+                  </div>
+                  <div style="font:400 12px/1 'Outfit',sans-serif;font-variant-numeric:tabular-nums;color:{{ h.streakColor }}">{{ h.streakLabel }}</div>
+                  <div style="width:1px;height:10px;background:rgba(23,24,26,.14)"></div>
+                  <div style="font:300 12px/1 'Outfit',sans-serif;color:rgba(23,24,26,.4)">{{ h.meta }}</div>
+                </div>
+              </div>
+              <button type="button" onClick="{{ h.onTap }}" style="width:50px;height:50px;flex:none;border-radius:99px;border:1.5px solid {{ h.ringBorder }};background:{{ h.ringBg }};color:{{ h.ringFg }};display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,border-color .2s,transform .12s;font:400 15px/1 'Outfit',sans-serif;font-variant-numeric:tabular-nums" style-active="transform:scale(.9)">{{ h.ringContent }}</button>
+            </div>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ allDone }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:26px;text-align:center;font:300 13.5px/1.5 'Outfit',sans-serif;color:#65a30d;animation:riseIn .45s both">Everything's done. See you tomorrow.</div>
+        </sc-if>
+      </div>
+
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:18px 22px 24px;background:linear-gradient(to top,#fcfcfb 58%,rgba(252,252,251,0))">
+        <button type="button" onClick="{{ openSheet }}" style="width:100%;height:54px;border:none;border-radius:15px;background:#17181a;color:#fcfcfb;font:400 15.5px/1 'Outfit',sans-serif;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px" style-active="transform:scale(.985)">
+          <span style="font-size:20px;font-weight:300;line-height:1">+</span>New habit
+        </button>
+      </div>
+
+      <sc-if value="{{ sheetOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;background:rgba(23,24,26,.3);animation:fadeIn .22s both" onClick="{{ closeSheet }}"></div>
+      </sc-if>
+      <sc-if value="{{ sheetOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:26px 26px 0 0;padding:11px 22px 30px;box-shadow:0 -14px 44px rgba(23,24,26,.14);animation:sheetUp .32s cubic-bezier(.22,1,.36,1) both;max-height:88%;overflow:auto">
+          <div style="width:36px;height:4px;border-radius:99px;background:rgba(23,24,26,.13);margin:0 auto 20px"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px">
+            <div style="font:300 24px/1.1 'Outfit',sans-serif;letter-spacing:-.03em">New habit</div>
+            <button type="button" onClick="{{ closeSheet }}" style="border:none;background:rgba(23,24,26,.05);width:32px;height:32px;border-radius:99px;font:300 15px/1 'Outfit',sans-serif;color:rgba(23,24,26,.5);cursor:pointer">✕</button>
+          </div>
+
+          <div style="font:400 10.5px/1 'Outfit',sans-serif;letter-spacing:.13em;text-transform:uppercase;color:rgba(23,24,26,.38);margin-bottom:10px">Habit</div>
+          <input type="text" value="{{ draftName }}" onChange="{{ onName }}" placeholder="Read 20 pages" style="width:100%;box-sizing:border-box;border:1px solid rgba(23,24,26,.12);background:#fcfcfb;border-radius:13px;padding:15px 16px;font:400 16.5px/1 'Outfit',sans-serif;color:#17181a;letter-spacing:-.015em" style-focus="border-color:#65a30d">
+
+          <div style="font:400 10.5px/1 'Outfit',sans-serif;letter-spacing:.13em;text-transform:uppercase;color:rgba(23,24,26,.38);margin:26px 0 10px">Repeat</div>
+          <div style="display:flex;gap:5px;background:rgba(23,24,26,.045);padding:4px;border-radius:14px">
+            <sc-for list="{{ freqOpts }}" as="f" hint-placeholder-count="3">
+              <button type="button" onClick="{{ f.onPick }}" style="flex:1;border:none;border-radius:10px;padding:11px 0;background:{{ f.bg }};color:{{ f.fg }};font:400 13.5px/1 'Outfit',sans-serif;cursor:pointer;box-shadow:{{ f.shadow }};transition:background .2s,color .2s">{{ f.label }}</button>
+            </sc-for>
+          </div>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;margin:26px 0 0">
+            <div>
+              <div style="font:400 15.5px/1.2 'Outfit',sans-serif;letter-spacing:-.015em">Times per day</div>
+              <div style="font:300 12.5px/1.35 'Outfit',sans-serif;color:rgba(23,24,26,.42);margin-top:5px">For count habits, like glasses of water</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:3px;background:rgba(23,24,26,.045);border-radius:12px;padding:4px">
+              <button type="button" onClick="{{ decTarget }}" style="width:34px;height:34px;border:none;border-radius:9px;background:#fff;font:300 18px/1 'Outfit',sans-serif;color:#17181a;cursor:pointer">−</button>
+              <div style="min-width:26px;text-align:center;font:400 15px/1 'Outfit',sans-serif;font-variant-numeric:tabular-nums">{{ draftTarget }}</div>
+              <button type="button" onClick="{{ incTarget }}" style="width:34px;height:34px;border:none;border-radius:9px;background:#fff;font:300 18px/1 'Outfit',sans-serif;color:#17181a;cursor:pointer">+</button>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;margin:22px 0 28px;padding-top:22px;border-top:1px solid rgba(23,24,26,.07)">
+            <div>
+              <div style="font:400 15.5px/1.2 'Outfit',sans-serif;letter-spacing:-.015em">Remind me</div>
+              <div style="font:300 12.5px/1.35 'Outfit',sans-serif;color:rgba(23,24,26,.42);margin-top:5px">{{ reminderHint }}</div>
+            </div>
+            <button type="button" onClick="{{ toggleReminder }}" style="width:50px;height:31px;border-radius:99px;border:none;padding:3px;background:{{ toggleBg }};cursor:pointer;display:flex;justify-content:{{ toggleJustify }};transition:background .22s">
+              <div style="width:25px;height:25px;border-radius:99px;background:#fff;box-shadow:0 1px 3px rgba(23,24,26,.22)"></div>
+            </button>
+          </div>
+
+          <button type="button" onClick="{{ createHabit }}" style="width:100%;height:54px;border:none;border-radius:15px;background:{{ createBg }};color:#fcfcfb;font:400 15.5px/1 'Outfit',sans-serif;cursor:{{ createCursor }};letter-spacing:-.01em;transition:background .2s" style-active="transform:scale(.985)">Create habit</button>
+        </div>
+      </sc-if>
+    </div>
+  </x-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#65a30d&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#65a30d&quot;,&quot;#0d9488&quot;,&quot;#4f46e5&quot;,&quot;#171717&quot;]},&quot;showTrail&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Home list&quot;}}">
+class Component extends DCLogic {
+  state = {
+    habits: [
+      { id: 1, name: 'Read 20 pages', streak: 12, target: 1, count: 1, meta: 'Evening', trail: [1,1,1,1,0,1,1] },
+      { id: 2, name: 'Morning run', streak: 4, target: 1, count: 0, meta: 'Daily', trail: [0,1,1,1,0,1,1] },
+      { id: 3, name: 'Water', streak: 23, target: 6, count: 2, meta: 'Daily', trail: [1,1,1,1,1,1,1] },
+      { id: 4, name: 'Duolingo', streak: 61, target: 1, count: 1, meta: '5 min', trail: [1,1,1,1,1,1,1] },
+      { id: 5, name: 'No sugar', streak: 2, target: 1, count: 0, meta: 'Weekdays', trail: [0,0,1,1,0,0,1] }
+    ],
+    sheetOpen: false,
+    draft: { name: '', freq: 'Daily', target: 1, reminder: true },
+    nextId: 6
+  };
+
+  accent() { return this.props.accentColor || '#65a30d'; }
+  tint(a) { return 'color-mix(in oklab, ' + this.accent() + ' ' + a + '%, transparent)'; }
+
+  tap(id) {
+    this.setState(s => ({
+      habits: s.habits.map(h => {
+        if (h.id !== id) return h;
+        if (h.count >= h.target) return { ...h, count: 0, streak: Math.max(0, h.streak - 1) };
+        const count = h.count + 1;
+        const justDone = count >= h.target;
+        return { ...h, count, streak: justDone ? h.streak + 1 : h.streak };
+      })
+    }));
+  }
+
+  setDraft(patch) { this.setState(s => ({ draft: { ...s.draft, ...patch } })); }
+
+  create() {
+    const d = this.state.draft;
+    if (!d.name.trim()) return;
+    this.setState(s => ({
+      habits: [...s.habits, {
+        id: s.nextId, name: d.name.trim(), streak: 0, target: d.target, count: 0,
+        meta: d.freq, trail: [0,0,0,0,0,0,0]
+      }],
+      nextId: s.nextId + 1,
+      sheetOpen: false,
+      draft: { name: '', freq: 'Daily', target: 1, reminder: true }
+    }));
+  }
+
+  renderVals() {
+    const accent = this.accent();
+    const showTrail = this.props.showTrail !== false;
+    const hs = this.state.habits;
+    const done = hs.filter(h => h.count >= h.target).length;
+    const d = this.state.draft;
+    const now = new Date();
+
+    const habits = hs.map(h => {
+      const complete = h.count >= h.target;
+      const partial = !complete && h.count > 0;
+      return {
+        name: h.name,
+        onTap: () => this.tap(h.id),
+        cardBg: complete ? this.tint(6) : '#fff',
+        cardBorder: complete ? this.tint(26) : 'rgba(23,24,26,.08)',
+        titleColor: complete ? 'rgba(23,24,26,.42)' : '#17181a',
+        titleDecoration: complete ? 'line-through' : 'none',
+        streakLabel: h.streak === 0 ? 'new' : h.streak + ' day' + (h.streak === 1 ? '' : 's'),
+        streakColor: h.streak >= 20 ? accent : 'rgba(23,24,26,.45)',
+        meta: h.target > 1 ? h.count + ' of ' + h.target : h.meta,
+        trail: (showTrail ? h.trail : []).map(v => ({ bg: v ? (h.streak >= 20 ? accent : 'rgba(23,24,26,.3)') : 'rgba(23,24,26,.1)' })),
+        ringBg: complete ? accent : 'transparent',
+        ringBorder: complete ? accent : (partial ? this.tint(45) : 'rgba(23,24,26,.16)'),
+        ringFg: complete ? '#fff' : accent,
+        ringContent: complete ? '✓' : (h.target > 1 ? h.count + '/' + h.target : '')
+      };
+    });
+
+    const dayNames = ['S','M','T','W','T','F','S'];
+    const todayIdx = now.getDay();
+    const week = dayNames.map((label, i) => {
+      const dt = new Date(now);
+      dt.setDate(now.getDate() - (todayIdx - i));
+      const isToday = i === todayIdx;
+      const future = i > todayIdx;
+      return {
+        label,
+        value: dt.getDate(),
+        labelColor: isToday ? accent : 'rgba(23,24,26,.35)',
+        bg: isToday ? this.tint(12) : (future ? 'transparent' : 'rgba(23,24,26,.035)'),
+        border: isToday ? this.tint(45) : 'transparent',
+        fg: isToday ? accent : (future ? 'rgba(23,24,26,.25)' : 'rgba(23,24,26,.5)')
+      };
+    });
+
+    const freqOpts = ['Daily', 'Weekdays', '3× / week'].map(label => ({
+      label,
+      onPick: () => this.setDraft({ freq: label }),
+      bg: d.freq === label ? '#fff' : 'transparent',
+      fg: d.freq === label ? '#17181a' : 'rgba(23,24,26,.5)',
+      shadow: d.freq === label ? '0 1px 3px rgba(23,24,26,.1)' : 'none'
+    }));
+
+    const nameOk = d.name.trim().length > 0;
+
+    return {
+      habits, week, freqOpts,
+      dateLabel: now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
+      doneCount: done,
+      totalCount: hs.length,
+      progressPct: hs.length ? Math.round((done / hs.length) * 100) + '%' : '0%',
+      allDone: hs.length > 0 && done === hs.length,
+      sheetOpen: this.state.sheetOpen,
+      openSheet: () => this.setState({ sheetOpen: true }),
+      closeSheet: () => this.setState({ sheetOpen: false }),
+      draftName: d.name,
+      onName: e => this.setDraft({ name: e.target.value }),
+      draftTarget: d.target,
+      incTarget: () => this.setDraft({ target: Math.min(12, d.target + 1) }),
+      decTarget: () => this.setDraft({ target: Math.max(1, d.target - 1) }),
+      toggleReminder: () => this.setDraft({ reminder: !d.reminder }),
+      reminderHint: d.reminder ? 'Every day at 8:00 PM' : 'No notification',
+      toggleBg: d.reminder ? accent : 'rgba(23,24,26,.14)',
+      toggleJustify: d.reminder ? 'flex-end' : 'flex-start',
+      createHabit: () => this.create(),
+      createBg: nameOk ? '#17181a' : 'rgba(23,24,26,.25)',
+      createCursor: nameOk ? 'pointer' : 'not-allowed'
+    };
+  }
+}
+
+</script>
+</body>
+</html>

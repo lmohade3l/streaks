@@ -1,0 +1,123 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--card);
+  border: 1px solid var(--ink-08);
+  border-radius: 18px;
+  padding: 15px 15px 15px 18px;
+  transition: background 0.28s, border-color 0.28s;
+}
+
+.rowComplete {
+  background: var(--accent-6);
+  border-color: var(--accent-26);
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nameComplete {
+  color: var(--ink-42);
+  text-decoration: line-through;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 9px;
+}
+
+.trail {
+  display: flex;
+  gap: 4px;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 99px;
+  background: var(--ink-10);
+}
+
+.dotHit {
+  background: rgba(23, 24, 26, 0.3);
+}
+
+/* Past twenty days the trail and the numeral both go green. */
+.dotHitHot {
+  background: var(--accent);
+}
+
+.streak {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-45);
+}
+
+.streakHot {
+  color: var(--accent);
+}
+
+.divider {
+  width: 1px;
+  height: 10px;
+  background: var(--ink-14);
+}
+
+.note {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--ink-40);
+}
+
+/* 50px, comfortably over the 44px minimum hit target — do not shrink. */
+.check {
+  width: 50px;
+  height: 50px;
+  flex: none;
+  border-radius: 99px;
+  border: 1.5px solid var(--ink-16);
+  background: transparent;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  transition: background 0.2s, border-color 0.2s, transform 0.12s;
+}
+
+.check:active {
+  transform: scale(0.9);
+}
+
+.checkPartial {
+  border-color: var(--accent-45);
+}
+
+.checkComplete {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}

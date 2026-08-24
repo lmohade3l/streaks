@@ -1,0 +1,245 @@
+.scrim {
+  position: absolute;
+  inset: 0;
+  border: none;
+  padding: 0;
+  width: 100%;
+  background: var(--scrim);
+  animation: fade-in 0.22s both;
+}
+
+.scrimClosing {
+  animation: fade-out 0.22s both;
+}
+
+.sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--card);
+  border-radius: 26px 26px 0 0;
+  padding: 11px var(--gutter) calc(30px + env(safe-area-inset-bottom));
+  box-shadow: var(--shadow-sheet);
+  max-height: 88%;
+  overflow-y: auto;
+  animation: sheet-up 0.32s var(--ease-sheet) both;
+}
+
+.sheetClosing {
+  animation: sheet-down 0.32s var(--ease-sheet) both;
+}
+
+.grabber {
+  width: 36px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--ink-13);
+  margin: 0 auto 20px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.headTitle {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.close {
+  border: none;
+  background: var(--ink-05);
+  width: 32px;
+  height: 32px;
+  border-radius: 99px;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--ink-50);
+  cursor: pointer;
+}
+
+.label {
+  font-size: 10.5px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-38);
+  margin-bottom: 10px;
+}
+
+.labelRepeat {
+  margin-top: 26px;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--ink-12);
+  background: var(--surface);
+  border-radius: 13px;
+  padding: 15px 16px;
+  /* 16px+ keeps iOS from zooming the viewport on focus. Do not shrink. */
+  font-size: 16.5px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  border-color: var(--accent);
+}
+
+.segments {
+  display: flex;
+  gap: 5px;
+  background: var(--ink-045);
+  padding: 4px;
+  border-radius: 14px;
+}
+
+.segment {
+  flex: 1;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 0;
+  background: transparent;
+  color: var(--ink-50);
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.segmentOn {
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: var(--shadow-segment);
+}
+
+.settingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.settingRowRule {
+  margin: 22px 0 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--ink-07);
+}
+
+.settingLabel {
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.settingHint {
+  margin-top: 5px;
+  font-size: 12.5px;
+  font-weight: 300;
+  line-height: 1.35;
+  color: var(--ink-42);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--ink-045);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.stepperKey {
+  --tap-w: 37px;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 9px;
+  background: var(--card);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.stepperKey:disabled {
+  color: var(--ink-25);
+  cursor: not-allowed;
+}
+
+.stepperValue {
+  min-width: 26px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.toggle {
+  width: 50px;
+  height: 31px;
+  flex: none;
+  border-radius: 99px;
+  border: none;
+  padding: 3px;
+  background: var(--ink-14);
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  transition: background 0.22s;
+}
+
+.toggleOn {
+  background: var(--accent);
+  justify-content: flex-end;
+}
+
+.knob {
+  width: 25px;
+  height: 25px;
+  border-radius: 99px;
+  background: #fff;
+  box-shadow: var(--shadow-knob);
+}
+
+.submit {
+  width: 100%;
+  height: 54px;
+  border: none;
+  border-radius: 15px;
+  background: var(--ink);
+  color: var(--on-dark);
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.12s;
+}
+
+.submit:active {
+  transform: scale(0.985);
+}
+
+.submit:disabled {
+  background: var(--ink-25);
+  cursor: not-allowed;
+}
