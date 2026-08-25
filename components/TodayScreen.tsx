@@ -46,6 +46,26 @@ export default function TodayScreen() {
 
         <WeekStrip week={week} />
 
+        {habits?.length === 0 && (
+          <div>
+            <div></div>
+            <p className={s.emptyStateTitle}>Start with one.</p>
+            <div>
+              <p className={s.emptyStateSubtitle}>One habit you'd keep on a bad day. You can always add more once it sticks.</p>
+            </div>
+            <div>
+              <p className={s.emptyStateOptionsTitle}>Common starts</p>
+            </div>
+            <div className={s?.emptyStateOptionsContainer}>
+              {
+                ['Read 20 pages' , 'Walk 30 min' , 'Water · 6 glasses' , 'Stretch' , 'No phone in bed']?.map(h => (
+                  <button onClick={() => setSheetOpen(true)} className={s.emptyStateOptionButton}>{h}</button>
+                ))
+              }
+            </div>
+          </div>
+        )}
+
         <ul className={s.list}>
           {habits.map((habit) => (
             <HabitRow key={habit.id} habit={habit} onTap={tap} />

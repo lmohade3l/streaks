@@ -16,11 +16,11 @@ type Seed = {
  * prototype's, and will differ slightly from the static mock.
  */
 const SEEDS: Seed[] = [
-  { habit: { id: 'seed-read', name: 'Read 20 pages', target: 1, freq: 'Daily', meta: 'Evening', reminder: true }, streak: 12, today: 1 },
-  { habit: { id: 'seed-run', name: 'Morning run', target: 1, freq: 'Daily', meta: 'Daily', reminder: true }, streak: 4, today: 0 },
-  { habit: { id: 'seed-water', name: 'Water', target: 6, freq: 'Daily', meta: 'Daily', reminder: false }, streak: 23, today: 2 },
-  { habit: { id: 'seed-duolingo', name: 'Duolingo', target: 1, freq: 'Daily', meta: '5 min', reminder: true }, streak: 61, today: 1 },
-  { habit: { id: 'seed-sugar', name: 'No sugar', target: 1, freq: 'Weekdays', meta: 'Weekdays', reminder: false }, streak: 2, today: 0 },
+  // { habit: { id: 'seed-read', name: 'Read 20 pages', target: 1, freq: 'Daily', meta: 'Evening', reminder: true }, streak: 12, today: 1 },
+  // { habit: { id: 'seed-run', name: 'Morning run', target: 1, freq: 'Daily', meta: 'Daily', reminder: true }, streak: 4, today: 0 },
+  // { habit: { id: 'seed-water', name: 'Water', target: 6, freq: 'Daily', meta: 'Daily', reminder: false }, streak: 23, today: 2 },
+  // { habit: { id: 'seed-duolingo', name: 'Duolingo', target: 1, freq: 'Daily', meta: '5 min', reminder: true }, streak: 61, today: 1 },
+  // { habit: { id: 'seed-sugar', name: 'No sugar', target: 1, freq: 'Weekdays', meta: 'Weekdays', reminder: false }, streak: 2, today: 0 },
 ];
 
 export function buildSeedData(now: Date = new Date()): { habits: Habit[]; log: CompletionLog } {
