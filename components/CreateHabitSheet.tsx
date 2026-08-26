@@ -15,10 +15,12 @@ export default function CreateHabitSheet({
   open,
   onClose,
   onCreate,
+  initialName
 }: {
   open: boolean;
   onClose: () => void;
   onCreate: (draft: Draft) => void;
+  initialName?: string
 }) {
   const [mounted, setMounted] = useState(open);
   const [closing, setClosing] = useState(false);
@@ -45,7 +47,7 @@ export default function CreateHabitSheet({
 
   // The draft is discarded on dismissal, as the handoff recommends.
   useEffect(() => {
-    if (open) setDraft(EMPTY_DRAFT);
+    if (open) setDraft({ ...EMPTY_DRAFT, name: initialName ?? '' });
   }, [open]);
 
   useEffect(() => {

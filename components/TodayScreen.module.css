@@ -141,34 +141,34 @@
 }
 
 .emptyStateTitle {
-  font: 300 27px / 1.2 Outfit, sans-serif;
+  font: 300 27px / 1.2 Outfit;
   letter-spacing: -0.03em;
-  color: rgb(23, 24, 26);
+  color: var(--ink);
 }
 
 .emptyStateSubtitle {
-  font: 300 14.5px / 1.65 Outfit, sans-serif;
-  color: rgba(23, 24, 26, 0.5);
+  font: 300 14.5px / 1.65 Outfit;
+  color: var(--ink-50);
   margin: 11px 0px 0px;
   max-width: 280px;
   text-wrap: pretty;
 }
 
 .emptyStateOptionsTitle {
-  font: 400 10.5px / 1 Outfit, sans-serif;
+  font: 400 10.5px / 1 Outfit;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: rgba(23, 24, 26, 0.38);
+  color: var(--ink-38);
   margin: 34px 0px 12px;
 }
 
 .emptyStateOptionButton {
   border: 1px solid rgba(23, 24, 26, 0.12);
-  background: rgb(255, 255, 255);
+  background: var(--card);
   border-radius: 99px;
   padding: 11px 16px;
-  font: 400 13.5px / 1 Outfit, sans-serif;
-  color: rgb(23, 24, 26);
+  font: 400 13.5px / 1 Outfit;
+  color: var(--ink);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -178,6 +178,22 @@
 
 .emptyStateOptionsContainer {
   display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.weekStripTop {
+  margin-top: 51px;
+}
+
+.emptyDot {
+  border: 1px solid var(--ink-38);
+  border-radius: 100%;
+  width: 8px;
+  height: 8px;
+}
+
+.emptyStateEmptyDotContainer {
+  display: flex;
+  gap: 6px;
 }

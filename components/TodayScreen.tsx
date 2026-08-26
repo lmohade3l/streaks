@@ -11,6 +11,9 @@ export default function TodayScreen() {
   const { ready, habits, done, total, progressPct, allDone, dateLabel, week, tap, createHabit } =
     useHabits();
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [prefillName, setPrefillName] = useState('')
+
+  const isEmpty = habits.length === 0
 
   // Until storage has been read there is no honest list to draw, and the date
   // would differ between server and client. Hold the painted background.
@@ -24,59 +27,85 @@ export default function TodayScreen() {
             <div className={s.eyebrow}>{dateLabel}</div>
             <h1 className={s.title}>Today</h1>
           </div>
-          <div className={s.counterWrap}>
-            <div className={s.counter}>
-              {done}
-              <span className={s.counterTotal}>/{total}</span>
+          {!isEmpty && (
+            <div className={s.counterWrap}>
+              <div className={s.counter}>
+                {done}
+                <span className={s.counterTotal}>/{total}</span>
+              </div>
+              <div className={s.counterLabel}>done</div>
             </div>
-            <div className={s.counterLabel}>done</div>
-          </div>
+          )}
         </header>
 
-        <div
-          className={s.track}
-          role="progressbar"
-          aria-label="Habits completed today"
-          aria-valuenow={done}
-          aria-valuemin={0}
-          aria-valuemax={total}
-        >
-          <div className={s.fill} style={{ width: `${progressPct}%` }} />
-        </div>
+        {!isEmpty && (
+          <div
+            className={s.track}
+            role="progressbar"
+            aria-label="Habits completed today"
+            aria-valuenow={done}
+            aria-valuemin={0}
+            aria-valuemax={total}
+          >
+            <div className={s.fill} style={{ width: `${progressPct}%` }} />
+          </div>
+        )}
 
-        <WeekStrip week={week} />
+        <WeekStrip week={week} className={isEmpty ? s.weekStripTop : ''} />
 
-        {habits?.length === 0 && (
+        {isEmpty && (
           <div>
-            <div></div>
+            <div className={s.emptyStateEmptyDotContainer}>
+              {Array.from({ length: 7 }).map((_) => (
+                <div
+                  className={`${s.emptyDot}`}
+                />
+
+              ))}
+            </div>
             <p className={s.emptyStateTitle}>Start with one.</p>
-            <div>
-              <p className={s.emptyStateSubtitle}>One habit you'd keep on a bad day. You can always add more once it sticks.</p>
-            </div>
-            <div>
-              <p className={s.emptyStateOptionsTitle}>Common starts</p>
-            </div>
-            <div className={s?.emptyStateOptionsContainer}>
+            <p className={s.emptyStateSubtitle}>One habit you'd keep on a bad day. You can always add more once it sticks.</p>
+            <p className={s.emptyStateOptionsTitle}>Common starts</p>
+            <div className={s.emptyStateOptionsContainer}>
               {
-                ['Read 20 pages' , 'Walk 30 min' , 'Water · 6 glasses' , 'Stretch' , 'No phone in bed']?.map(h => (
-                  <button onClick={() => setSheetOpen(true)} className={s.emptyStateOptionButton}>{h}</button>
+                ['Read 20 pages', 'Walk 30 min', 'Water · 6 glasses', 'Stretch', 'No phone in bed'].map(h => (
+                  <button
+                    key={h}
+                    type='button'
+                    onClick={() => {
+                      setPrefillName(h)
+                      setSheetOpen(true)
+                    }}
+                    className={`${s.emptyStateOptionButton} tapTarget`}
+                  >
+                    {h}
+                  </button>
                 ))
               }
             </div>
           </div>
         )}
 
-        <ul className={s.list}>
-          {habits.map((habit) => (
-            <HabitRow key={habit.id} habit={habit} onTap={tap} />
-          ))}
-        </ul>
+        {!isEmpty && (
+          <ul className={s.list}>
+            {habits.map((habit) => (
+              <HabitRow key={habit.id} habit={habit} onTap={tap} />
+            ))}
+          </ul>
+        )}
 
         {allDone && <p className={s.allDone}>Everything&rsquo;s done. See you tomorrow.</p>}
       </div>
 
       <div className={s.footer}>
-        <button type="button" className={s.cta} onClick={() => setSheetOpen(true)}>
+        <button
+          type="button"
+          className={s.cta}
+          onClick={() => {
+            setPrefillName('')
+            setSheetOpen(true)
+          }}
+        >
           <span className={s.ctaPlus} aria-hidden="true">
             +
           </span>
@@ -85,6 +114,7 @@ export default function TodayScreen() {
       </div>
 
       <CreateHabitSheet
+        initialName={prefillName}
         open={sheetOpen}
         onClose={() => setSheetOpen(false)}
         onCreate={(draft) => {

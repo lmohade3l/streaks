@@ -27,11 +27,23 @@ with a UI prompt attached when the task needs design.
 - [ ] 11. Move persistence to IndexedDB · ~60 min
 - [ ] 12. Make `freq` real (Weekdays / 3× week) + rest-day empty state · ~60 min
 
-### Phase 5 — Entry experience
-- [ ] 13. Splash screen with logo animation · ~40 min · design
-- [ ] 14. Landing page for first open · ~50 min · design
-- [ ] 15. Login form UI · ~60 min · design
-- [ ] 16. Login validation + states · ~45 min
+### Phase 5 — Habits & reminders
+- [ ] 13. Reminder at a custom hour (replace hardcoded 8:00 PM) · ~50 min · design
+- [ ] 14. Real reminder notifications (permission + push + SW handler) · ~2 sessions
+- [ ] 15. Surface a broken streak to the user · ~40 min · design
+- [ ] 16. Streak freeze (skip a day without losing the streak) · ~60 min
+- [ ] 17. Multi-section habits · ~60 min · design · scope unclear, decide first
+
+### Phase 6 — Entry experience
+- [ ] 18. Splash screen with logo animation · ~40 min · design
+- [ ] 19. Landing page for first open · ~50 min · design
+- [ ] 20. Login form UI · ~60 min · design
+- [ ] 21. Login validation + states · ~45 min
+
+## Not possible as a PWA
+- **Home screen widget** — iOS widgets need WidgetKit in a native app; there is no
+  web API for one. Android has none either. Would require shipping a real native
+  app (or Capacitor shell) alongside this. Parked, not scheduled.
 
 ## Log
 
@@ -40,3 +52,5 @@ with a UI prompt attached when the task needs design.
 | 2026-08-25 | — | Checklist created. |
 | 2026-08-25 | 1 | Empty state shipped. Good copy, good "common starts" idea. Review: seeds left commented out, colors hardcoded instead of tokens, missing `key`, chips don't prefill the name. Folded into task 2. |
 | 2026-08-25 | — | Added tasks 5, 6, 10, 12. Reordered: token cleanup now precedes dark mode. |
+| 2026-08-27 | 2 | Tokens + review fixes done. Remaining: `font` shorthand drops the fallback chain, `className = ''` default on WeekStrip, chip `:active`. |
+| 2026-08-27 | — | Added reminders/streak/sections tasks (13–17). Widget parked: not possible from a PWA. |
