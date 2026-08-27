@@ -46,6 +46,8 @@ export default function CreateHabitSheet({
   }, [open, mounted]);
 
   // The draft is discarded on dismissal, as the handoff recommends.
+  // if initialName be in deps, changing it might reset what the user is typing
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (open) setDraft({ ...EMPTY_DRAFT, name: initialName ?? '' });
   }, [open]);
