@@ -2,6 +2,7 @@
  * Design tokens from the handoff README. These values are final — components
  * reference the tokens rather than restating literals.
  */
+
 :root {
   --accent: #65a30d;
   --ink: #17181a;
@@ -9,7 +10,8 @@
   --card: #ffffff;
   --on-dark: #fcfcfb;
   --scrim: rgba(23, 24, 26, 0.3);
-
+  --knob: #ffffff;
+  
   --ink-60: rgba(23, 24, 26, 0.6);
   --ink-50: rgba(23, 24, 26, 0.5);
   --ink-45: rgba(23, 24, 26, 0.45);
@@ -17,6 +19,7 @@
   --ink-40: rgba(23, 24, 26, 0.4);
   --ink-38: rgba(23, 24, 26, 0.38);
   --ink-35: rgba(23, 24, 26, 0.35);
+  --ink-30: rgba(23, 24, 26, 0.3);
   --ink-25: rgba(23, 24, 26, 0.25);
   --ink-16: rgba(23, 24, 26, 0.16);
   --ink-14: rgba(23, 24, 26, 0.14);
@@ -28,12 +31,14 @@
   --ink-05: rgba(23, 24, 26, 0.05);
   --ink-045: rgba(23, 24, 26, 0.045);
   --ink-035: rgba(23, 24, 26, 0.035);
-
+  
   /* Accent tints. Plain rgba here, upgraded to the specified oklab mixes below. */
   --accent-6: rgba(101, 163, 13, 0.06);
   --accent-12: rgba(101, 163, 13, 0.12);
   --accent-26: rgba(101, 163, 13, 0.26);
   --accent-45: rgba(101, 163, 13, 0.45);
+
+  --on-accent: #ffffff;
 
   --shadow-sheet: 0 -14px 44px rgba(23, 24, 26, 0.14);
   --shadow-segment: 0 1px 3px rgba(23, 24, 26, 0.1);
@@ -49,6 +54,8 @@
   --gutter: max(22px, env(safe-area-inset-left), env(safe-area-inset-right));
 }
 
+
+
 @supports (color: color-mix(in oklab, #65a30d 6%, transparent)) {
   :root {
     --accent-6: color-mix(in oklab, var(--accent) 6%, transparent);
@@ -57,6 +64,49 @@
     --accent-45: color-mix(in oklab, var(--accent) 45%, transparent);
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface: #131412;
+    --card: #1c1d19;
+    --ink: #f2f1ec;
+    --accent: #84cc16;
+
+    --on-dark: #131412;
+    --on-accent: #131412;
+    --knob: #ffffff;
+    --scrim: rgba(0, 0, 0, 0.62);
+
+    --ink-50: rgba(242, 241, 236, 0.55);
+    --ink-45: rgba(242, 241, 236, 0.50);
+    --ink-42: rgba(242, 241, 236, 0.48);
+    --ink-40: rgba(242, 241, 236, 0.46);
+    --ink-38: rgba(242, 241, 236, 0.44);
+    --ink-35: rgba(242, 241, 236, 0.40);
+    --ink-30: rgba(242, 241, 236, 0.34);
+    --ink-25: rgba(242, 241, 236, 0.28);
+    --ink-16: rgba(242, 241, 236, 0.22);
+    --ink-14: rgba(242, 241, 236, 0.20);
+    --ink-13: rgba(242, 241, 236, 0.18);
+    --ink-12: rgba(242, 241, 236, 0.16);
+    --ink-10: rgba(242, 241, 236, 0.14);
+    --ink-08: rgba(242, 241, 236, 0.12);
+    --ink-07: rgba(242, 241, 236, 0.10);
+    --ink-05: rgba(242, 241, 236, 0.08);
+    --ink-045: rgba(242, 241, 236, 0.07);
+    --ink-035: rgba(242, 241, 236, 0.055);
+
+    --accent-6: color-mix(in oklab, var(--accent) 14%, var(--card));
+    --accent-12: color-mix(in oklab, var(--accent) 18%, var(--surface));
+    --accent-26: color-mix(in oklab, var(--accent) 34%, var(--card));
+    --accent-45: color-mix(in oklab, var(--accent) 55%, var(--card));
+
+    --shadow-sheet: none;
+    --shadow-segment: none;
+    --shadow-knob: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+}
+
 
 *,
 *::before,

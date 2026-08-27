@@ -30,7 +30,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#fcfcfb',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fcfcfb' },
+    { media: '(prefers-color-scheme: dark)', color: '#131412' },
+  ],
   // Lets the layout paint under the notch so env(safe-area-inset-*) is meaningful.
   viewportFit: 'cover',
 };
