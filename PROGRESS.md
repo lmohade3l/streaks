@@ -9,7 +9,7 @@ with a UI prompt attached when the task needs design.
 
 ### Phase 1 — Foundation
 - [x] 1. Empty state for the habit list · ~40 min · design
-- [ ] 2. Token cleanup + fixes from task 1 review · ~40 min
+- [x] 2. Token cleanup + fixes from task 1 review · ~40 min
 - [ ] 3. Dark palette, follows system setting · ~45 min
 - [ ] 4. Theme toggle + remember the choice · ~40 min
 
@@ -52,5 +52,5 @@ with a UI prompt attached when the task needs design.
 | 2026-08-25 | — | Checklist created. |
 | 2026-08-25 | 1 | Empty state shipped. Good copy, good "common starts" idea. Review: seeds left commented out, colors hardcoded instead of tokens, missing `key`, chips don't prefill the name. Folded into task 2. |
 | 2026-08-25 | — | Added tasks 5, 6, 10, 12. Reordered: token cleanup now precedes dark mode. |
-| 2026-08-27 | 2 | Tokens + review fixes done. Remaining: `font` shorthand drops the fallback chain, `className = ''` default on WeekStrip, chip `:active`. |
+| 2026-08-27 | 2 | Done. Lesson: the `font` shorthand needs both size and family or the whole declaration is dropped — use longhand so the family is inherited. |
 | 2026-08-27 | — | Added reminders/streak/sections tasks (13–17). Widget parked: not possible from a PWA. |
