@@ -217,7 +217,7 @@
   height: 25px;
   border-radius: 99px;
   background: #fff;
-  box-shadow: var(--shadow-knob);
+  box-shadow: var(--knob);
 }
 
 .submit {

@@ -55,7 +55,7 @@
 }
 
 .dotHit {
-  background: rgba(23, 24, 26, 0.3);
+  background: var(--ink-30);
 }
 
 /* Past twenty days the trail and the numeral both go green. */
@@ -119,5 +119,5 @@
 .checkComplete {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
