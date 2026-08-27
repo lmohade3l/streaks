@@ -56,8 +56,9 @@ export default function TodayScreen() {
         {isEmpty && (
           <div>
             <div className={s.emptyStateEmptyDotContainer}>
-              {Array.from({ length: 7 }).map((_) => (
+              {Array.from({ length: 7 }).map((_ , index) => (
                 <div
+                  key={index}
                   className={`${s.emptyDot}`}
                 />
 
