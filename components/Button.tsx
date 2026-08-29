@@ -1,14 +1,14 @@
 import s from './Button.module.css'
 
 type ButtonProps = React.ComponentProps<'button'> & {
-    variant?: 'primary' | 'chip' | 'icon'
+    variant?: 'primary' | 'outlined' | 'icon'
 }
 
 export default function Button({ variant = 'primary', children, ...props }: ButtonProps) {
     return (
         <button
             type={props?.type ?? 'button'}
-            className={`${s.primary}`}
+            className={`${s[variant]}`}
             {...props}
         >
             {children}

@@ -57,7 +57,7 @@ export default function TodayScreen() {
         {isEmpty && (
           <div>
             <div className={s.emptyStateEmptyDotContainer}>
-              {Array.from({ length: 7 }).map((_ , index) => (
+              {Array.from({ length: 7 }).map((_, index) => (
                 <div
                   key={index}
                   className={`${s.emptyDot}`}
@@ -71,17 +71,16 @@ export default function TodayScreen() {
             <div className={s.emptyStateOptionsContainer}>
               {
                 ['Read 20 pages', 'Walk 30 min', 'Water · 6 glasses', 'Stretch', 'No phone in bed'].map(h => (
-                  <button
+                  <Button
+                    variant='outlined'
                     key={h}
-                    type='button'
                     onClick={() => {
                       setPrefillName(h)
                       setSheetOpen(true)
                     }}
-                    className={`${s.emptyStateOptionButton} tapTarget`}
                   >
                     {h}
-                  </button>
+                  </Button>
                 ))
               }
             </div>
