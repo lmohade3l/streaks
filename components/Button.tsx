@@ -8,8 +8,9 @@ export default function Button({ variant = 'primary', children, ...props }: Butt
     return (
         <button
             type={props?.type ?? 'button'}
-            className={`${s[variant]}`}
+            className={`${s[variant]} ${props?.disabled ? s.disabled : ''}`}
             {...props}
+
         >
             {children}
         </button>

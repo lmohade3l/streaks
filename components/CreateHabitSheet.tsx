@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Draft, Frequency } from '@/lib/types';
 import s from './CreateHabitSheet.module.css';
+import Button from './Button';
 
 const FREQUENCIES: Frequency[] = ['Daily', 'Weekdays', '3× / week'];
 const MIN_TARGET = 1;
@@ -202,9 +203,12 @@ export default function CreateHabitSheet({
             </button>
           </div>
 
-          <button type="submit" className={s.submit} disabled={!nameOk}>
+          <Button
+            type="submit"
+            disabled={!nameOk}
+          >
             Create habit
-          </button>
+          </Button>
         </form>
       </div>
     </>
