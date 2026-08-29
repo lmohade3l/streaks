@@ -6,6 +6,7 @@ import HabitRow from './HabitRow';
 import WeekStrip from './WeekStrip';
 import s from './TodayScreen.module.css';
 import { useHabits } from '@/lib/useHabits';
+import Button from './Button';
 
 export default function TodayScreen() {
   const { ready, habits, done, total, progressPct, allDone, dateLabel, week, tap, createHabit } =
@@ -99,9 +100,7 @@ export default function TodayScreen() {
       </div>
 
       <div className={s.footer}>
-        <button
-          type="button"
-          className={s.cta}
+        <Button
           onClick={() => {
             setPrefillName('')
             setSheetOpen(true)
@@ -111,7 +110,7 @@ export default function TodayScreen() {
             +
           </span>
           New habit
-        </button>
+        </Button>
       </div>
 
       <CreateHabitSheet
