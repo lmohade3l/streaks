@@ -13,7 +13,7 @@ with a UI prompt attached when the task needs design.
 - [x] 3. Dark palette, follows system setting · ~45 min
 
 ### Phase 2 — Shell
-- [ ] 4. Button primitive (one component, a few variants) · ~50 min
+- [x] 4. Button primitive (one component, a few variants) · ~50 min
 - [ ] 5. App header · ~40 min · design
 - [ ] 6. Theme toggle, lives in the header · ~45 min
 - [ ] 7. Bottom nav: home / add / profile · ~50 min · design
@@ -70,3 +70,5 @@ with a UI prompt attached when the task needs design.
 | 2026-08-27 | 3 | Dark palette done, all tokens flip correctly. Seeds are commented out again in lib/seed.ts. |
 | 2026-08-27 | — | Reordered: theme toggle now follows the header, since the button needs somewhere to live. |
 | 2026-08-30 | — | Added edit / delete-confirm / archive / past-days / calendar view / Persian calendar. Renumbered; 27 tasks total. |
+| 2026-08-30 | — | Commit email was the work address, so GitHub attributed nothing. Rewrote all 16 commits to the noreply address and force-pushed. |
+| 2026-08-30 | 4 | Button primitive done: primary / outlined / icon. tapTarget now lives inside the component. Noted: disabled primary reads too light in dark mode. |
