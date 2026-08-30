@@ -14,15 +14,14 @@ with a UI prompt attached when the task needs design.
 
 ### Phase 2 — Shell
 - [x] 4. Button primitive (one component, a few variants) · ~50 min
-- [ ] 5. App header · ~40 min · design
-- [ ] 6. Theme toggle, lives in the header · ~45 min
-- [ ] 7. Bottom nav: home / add / profile · ~50 min · design
-- [ ] 8. Create-habit becomes its own route · ~50 min
-- [ ] 9. Habit detail page · ~60 min · design
-- [ ] 10. Edit a habit (reuses the create form) · ~50 min
-- [ ] 11. Delete a habit + confirm step · ~40 min · design
-- [ ] 12. Archive a habit (hide without losing the log) · ~50 min · design
-- [ ] 13. EmptyState component: first-run + all-done · ~40 min
+- [ ] 5. Bottom nav: home / add / profile · ~50 min · design
+- [ ] 6. Profile screen, holds the theme toggle · ~60 min · design
+- [ ] 7. Create-habit becomes its own route, with a back button · ~50 min
+- [ ] 8. Habit detail page · ~60 min · design
+- [ ] 9. Edit a habit (reuses the create form) · ~50 min
+- [ ] 10. Delete a habit + confirm step · ~40 min · design
+- [ ] 11. Archive a habit (hide without losing the log) · ~50 min · design
+- [ ] 12. EmptyState component: first-run + all-done · ~40 min
 
 ### Phase 3 — Data
 - [ ] 14. Move persistence to IndexedDB · ~60 min
@@ -45,6 +44,13 @@ with a UI prompt attached when the task needs design.
 - [ ] 25. Landing page for first open · ~50 min · design
 - [ ] 26. Login form UI · ~60 min · design
 - [ ] 27. Login validation + states · ~45 min
+
+## Decided against
+- **A global app header.** The Today screen's large "Today" title already does a
+  header's job, and a fixed bar above it would just cost vertical space. What the
+  app actually needs is a *back button on secondary pages*, which each of those
+  tasks now carries. Revisit only if the list grows long enough that the title
+  scrolls away — then the answer is an iOS-style collapsing title, not a bar.
 
 ## Watch out for
 - **Task 18 (Persian calendar).** The completion log must stay keyed by Gregorian
@@ -71,4 +77,5 @@ with a UI prompt attached when the task needs design.
 | 2026-08-27 | — | Reordered: theme toggle now follows the header, since the button needs somewhere to live. |
 | 2026-08-30 | — | Added edit / delete-confirm / archive / past-days / calendar view / Persian calendar. Renumbered; 27 tasks total. |
 | 2026-08-30 | — | Commit email was the work address, so GitHub attributed nothing. Rewrote all 16 commits to the noreply address and force-pushed. |
+| 2026-08-30 | — | Dropped the app-header task; theme toggle moves to the profile screen. 26 tasks now. |
 | 2026-08-30 | 4 | Button primitive done: primary / outlined / icon. tapTarget now lives inside the component. Noted: disabled primary reads too light in dark mode. |
