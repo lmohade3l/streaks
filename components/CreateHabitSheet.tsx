@@ -103,14 +103,14 @@ export default function CreateHabitSheet({
           <h2 id="new-habit-title" className={s.headTitle}>
             New habit
           </h2>
-          <button
+          <Button
             type="button"
-            className={`${s.close} tapTarget`}
+            variant='icon'
             aria-label="Close"
             onClick={onClose}
           >
             ✕
-          </button>
+          </Button>
         </div>
 
         <form

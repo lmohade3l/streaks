@@ -4,13 +4,15 @@ type ButtonProps = React.ComponentProps<'button'> & {
     variant?: 'primary' | 'outlined' | 'icon'
 }
 
-export default function Button({ variant = 'primary', children, ...props }: ButtonProps) {
+const NEEDS_TAP_TARGET = { primary: false, outlined: true, icon: true };
+
+export default function Button({ variant = 'primary', className = '', type = 'button', children, ...props }: ButtonProps) {
     return (
         <button
-            type={props?.type ?? 'button'}
-            className={`${s[variant]} ${props?.disabled ? s.disabled : ''}`}
-            {...props}
-
+            type={type}
+            className={[s[variant], NEEDS_TAP_TARGET[variant] && 'tapTarget', className]
+                .filter(Boolean)
+                .join(' ')}            {...props}
         >
             {children}
         </button>

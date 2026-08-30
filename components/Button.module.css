@@ -17,6 +17,11 @@
     transition: transform 0.12s;
 }
 
+.primary:disabled {
+    background: var(--ink-25);
+    cursor: default;
+}
+
 .primary:active {
     transform: scale(0.985);
 }
@@ -36,6 +41,25 @@
     gap: 7px;
 }
 
-.disabled {
-    opacity: 0.3;
+.icon {
+    border: none;
+    background: var(--ink-05);
+    width: 32px;
+    height: 32px;
+    border-radius: 99px;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--ink-50);
+    cursor: pointer;
+}
+
+.outlined,
+.icon {
+    transition: transform 0.12s, background 0.2s;
+}
+
+.outlined:active,
+.icon:active {
+    transform: scale(0.96);
 }
