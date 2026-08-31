@@ -6,7 +6,7 @@ import HabitRow from './HabitRow';
 import WeekStrip from './WeekStrip';
 import s from './TodayScreen.module.css';
 import { useHabits } from '@/lib/useHabits';
-import Button from './Button';
+import Button from './ui/Button';
 
 export default function TodayScreen() {
   const { ready, habits, done, total, progressPct, allDone, dateLabel, week, tap, createHabit } =

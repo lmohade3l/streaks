@@ -1,0 +1,13 @@
+.container {
+    display: fixed;
+    bottom: 0;
+    height: 64px;
+    z-index: 100;
+}
+
+.innerContainer {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 24px;
+    padding-right: 24px;
+}

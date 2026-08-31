@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Draft, Frequency } from '@/lib/types';
 import s from './CreateHabitSheet.module.css';
-import Button from './Button';
+import Button from './ui/Button';
 
 const FREQUENCIES: Frequency[] = ['Daily', 'Weekdays', '3× / week'];
 const MIN_TARGET = 1;
