@@ -1,9 +1,14 @@
 .container {
-    display: fixed;
-    bottom: 0;
-    height: 64px;
-    z-index: 100;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  z-index: 100;
+  background: var(--surface);
+  padding-bottom: env(safe-area-inset-bottom);
 }
+
 
 .innerContainer {
     display: flex;

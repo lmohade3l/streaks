@@ -32,7 +32,7 @@ export default function BottomNavigation(){
             <div className={s.innerContainer}>
                 {navigationItems?.map(n => (
                     <div>
-                        <Image width={30} src={n.icon}/>
+                        <img width={30} src={n.icon}/>
                         <p>{n.label}</p>
                     </div>
                 ))}
