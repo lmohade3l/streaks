@@ -1,11 +1,20 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  // Lets `.svg` files be imported as React components, so icons inherit
+  // currentColor and can change with the theme and the active nav state.
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
+  },
+
   async headers() {
     return [
       {
-        // The service worker must never be served stale, or users get stuck
-        // on an old shell after a deploy.
         source: '/sw.js',
         headers: [
           { key: 'Cache-Control', value: 'no-cache, no-store, must-revalidate' },
