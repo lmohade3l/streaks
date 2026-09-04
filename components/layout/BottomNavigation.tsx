@@ -38,11 +38,12 @@ export default function BottomNavigation() {
         <div className={s.container}>
             <div className={s.innerContainer}>
                 {navigationItems.map((n) => {
-                    const Icon = pathname === n.href ? n.fillIcon : n.icon;
+                    const isActive = pathname === n.href
+                    const Icon = isActive ? n.fillIcon : n.icon;
                     return (
-                        <Link style={{color:'#FFF'}} key={n.label} href={n.href} className={s.item}>
-                            <Icon width={24} height={24} />
-                            <span>{n.label}</span>
+                        <Link key={n.label} href={n.href} className={s.item}>
+                            <Icon className={`${s.icon} ${isActive ? s.activeItem : ''}`} width={22} height={22} />
+                            <span className={`${isActive ? s.activeItem : ''}`}>{n.label}</span>
                         </Link>
                     );
                 })}
