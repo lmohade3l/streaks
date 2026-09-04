@@ -8,39 +8,37 @@ import ProfileFilled from '@/public/icons/profile-filled.svg'
 import ProfileOutlined from '@/public/icons/profile-outline.svg'
 import s from './ButtomNavigation.module.css'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-const isActive = (href: string) => {
-    return window.location.pathname === href
-}
+const navigationItems = [
+    {
+        label: 'Home',
+        icon: HomeOutlined,
+        fillIcon: HomeFilled,
+        href: '/',
+    },
+    {
+        label: 'Add',
+        icon: AddOutlined,
+        fillIcon: AddFilled,
+        href: '/add',
+    },
+    {
+        label: 'Profile',
+        icon: ProfileOutlined,
+        fillIcon: ProfileFilled,
+        href: '/profile',
+    },
+]
 
 export default function BottomNavigation() {
-
-    const navigationItems = [
-        {
-            label: 'Home',
-            icon: HomeOutlined,
-            fillIcon: HomeFilled,
-            href: '/',
-        },
-        {
-            label: 'Add',
-            icon: AddOutlined,
-            fillIcon: AddFilled,
-            href: '/add',
-        },
-        {
-            label: 'Profile',
-            icon: ProfileOutlined,
-            fillIcon: ProfileFilled,
-            href: '/profile',
-        },
-    ]
+    const pathname = usePathname()
 
     return (
         <div className={s.container}>
             <div className={s.innerContainer}>
                 {navigationItems.map((n) => {
-                    const Icon = isActive(n.href) ? n.fillIcon : n.icon;
+                    const Icon = pathname === n.href ? n.fillIcon : n.icon;
                     return (
                         <Link style={{color:'#FFF'}} key={n.label} href={n.href} className={s.item}>
                             <Icon width={24} height={24} />
