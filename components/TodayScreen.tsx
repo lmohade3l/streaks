@@ -98,20 +98,6 @@ export default function TodayScreen() {
         {allDone && <p className={s.allDone}>Everything&rsquo;s done. See you tomorrow.</p>}
       </div>
 
-      <div className={s.footer}>
-        <Button
-          onClick={() => {
-            setPrefillName('')
-            setSheetOpen(true)
-          }}
-        >
-          <span className={s.ctaPlus} aria-hidden="true">
-            +
-          </span>
-          New habit
-        </Button>
-      </div>
-
       <CreateHabitSheet
         initialName={prefillName}
         open={sheetOpen}
