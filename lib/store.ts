@@ -106,7 +106,6 @@ export function tap(habitId: string) {
 }
 
 export function createHabit(draft: Draft): Habit {
-  console.log('is creating habit?')
   const habit: Habit = {
     id: newId(),
     name: draft.name.trim(),

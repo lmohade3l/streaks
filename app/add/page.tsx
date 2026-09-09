@@ -32,7 +32,6 @@ export default function Add() {
 
                 <form
                     onSubmit={(event) => {
-                        console.log('im being clicked' )
                         event.preventDefault();
                         if (nameOk) createHabit({ ...draft, name: draft.name.trim() });
                         router.push('/')
