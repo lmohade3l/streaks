@@ -35,7 +35,7 @@ export default function Add() {
                         console.log('im being clicked' )
                         event.preventDefault();
                         if (nameOk) createHabit({ ...draft, name: draft.name.trim() });
-                        router('/')
+                        router.push('/')
                     }}
                 >
                     <label className={s.label} htmlFor="habit-name">
