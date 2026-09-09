@@ -6,7 +6,7 @@ import HomeFilled from '@/public/icons/home-filled.svg'
 import HomeOutlined from '@/public/icons/home-outline.svg'
 import ProfileFilled from '@/public/icons/profile-filled.svg'
 import ProfileOutlined from '@/public/icons/profile-outline.svg'
-import s from './ButtomNavigation.module.css'
+import s from './BottomNavigation.module.css'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 

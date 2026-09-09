@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import CreateHabitSheet from './CreateHabitSheet';
 import HabitRow from './HabitRow';
 import WeekStrip from './WeekStrip';
 import s from './TodayScreen.module.css';
@@ -11,7 +10,6 @@ import Button from './ui/Button';
 export default function TodayScreen() {
   const { ready, habits, done, total, progressPct, allDone, dateLabel, week, tap, createHabit } =
     useHabits();
-  const [sheetOpen, setSheetOpen] = useState(false);
   const [prefillName, setPrefillName] = useState('')
 
   const isEmpty = habits.length === 0
@@ -76,7 +74,6 @@ export default function TodayScreen() {
                     key={h}
                     onClick={() => {
                       setPrefillName(h)
-                      setSheetOpen(true)
                     }}
                   >
                     {h}
@@ -97,16 +94,6 @@ export default function TodayScreen() {
 
         {allDone && <p className={s.allDone}>Everything&rsquo;s done. See you tomorrow.</p>}
       </div>
-
-      <CreateHabitSheet
-        initialName={prefillName}
-        open={sheetOpen}
-        onClose={() => setSheetOpen(false)}
-        onCreate={(draft) => {
-          createHabit(draft);
-          setSheetOpen(false);
-        }}
-      />
     </main>
   );
 }
