@@ -5,6 +5,7 @@ import { Draft, Frequency } from "@/lib/types";
 import { useState } from "react";
 import s from './Add.module.css'
 import { createHabit } from "@/lib/store";
+import { useRouter } from "next/router";
 
 const EMPTY_DRAFT: Draft = { name: '', freq: 'Daily', target: 1, reminder: true };
 
@@ -15,6 +16,7 @@ const SHEET_MS = 320;
 
 export default function Add() {
     const [draft, setDraft] = useState<Draft>(EMPTY_DRAFT);
+    const router = useRouter()
 
     const nameOk = draft.name.trim().length > 0;
     const patch = (next: Partial<Draft>) => setDraft((current) => ({ ...current, ...next }));
@@ -30,8 +32,10 @@ export default function Add() {
 
                 <form
                     onSubmit={(event) => {
+                        console.log('im being clicked' )
                         event.preventDefault();
                         if (nameOk) createHabit({ ...draft, name: draft.name.trim() });
+                        router('/')
                     }}
                 >
                     <label className={s.label} htmlFor="habit-name">
