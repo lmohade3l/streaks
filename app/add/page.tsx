@@ -5,7 +5,7 @@ import { Draft, Frequency } from "@/lib/types";
 import { useState } from "react";
 import s from './Add.module.css'
 import { createHabit } from "@/lib/store";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const EMPTY_DRAFT: Draft = { name: '', freq: 'Daily', target: 1, reminder: true };
 
