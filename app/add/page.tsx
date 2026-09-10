@@ -4,7 +4,7 @@ import Button from "@/components/ui/Button";
 import { Draft, Frequency } from "@/lib/types";
 import { useState } from "react";
 import s from './Add.module.css'
-import { createHabit } from "@/lib/store";
+import { useHabits } from "@/lib/useHabits";
 import { useRouter } from "next/navigation";
 
 const EMPTY_DRAFT: Draft = { name: '', freq: 'Daily', target: 1, reminder: true };
@@ -17,6 +17,7 @@ const SHEET_MS = 320;
 export default function Add() {
     const [draft, setDraft] = useState<Draft>(EMPTY_DRAFT);
     const router = useRouter()
+    const { createHabit } = useHabits();
 
     const nameOk = draft.name.trim().length > 0;
     const patch = (next: Partial<Draft>) => setDraft((current) => ({ ...current, ...next }));
