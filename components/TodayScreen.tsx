@@ -6,11 +6,12 @@ import WeekStrip from './WeekStrip';
 import s from './TodayScreen.module.css';
 import { useHabits } from '@/lib/useHabits';
 import Button from './ui/Button';
+import { useRouter } from 'next/navigation';
 
 export default function TodayScreen() {
+  const router = useRouter()
   const { ready, habits, done, total, progressPct, allDone, dateLabel, week, tap, createHabit } =
     useHabits();
-  const [prefillName, setPrefillName] = useState('')
 
   const isEmpty = habits.length === 0
 
@@ -73,7 +74,7 @@ export default function TodayScreen() {
                     variant='outlined'
                     key={h}
                     onClick={() => {
-                      setPrefillName(h)
+                      router.push(`/add?initializeName=${h}`)
                     }}
                   >
                     {h}

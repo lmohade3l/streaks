@@ -2,10 +2,10 @@
 
 import Button from "@/components/ui/Button";
 import { Draft, Frequency } from "@/lib/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import s from './Add.module.css'
 import { useHabits } from "@/lib/useHabits";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 const EMPTY_DRAFT: Draft = { name: '', freq: 'Daily', target: 1, reminder: true };
 
@@ -18,6 +18,14 @@ export default function Add() {
     const [draft, setDraft] = useState<Draft>(EMPTY_DRAFT);
     const router = useRouter()
     const { createHabit } = useHabits();
+
+    const params = useSearchParams()
+    const initializeName = params.get('initializeName')
+
+    useEffect(() => {
+        if (!initializeName) return
+        setDraft((prev) => ({ ...prev, name: initializeName }))
+    }, [initializeName])
 
     const nameOk = draft.name.trim().length > 0;
     const patch = (next: Partial<Draft>) => setDraft((current) => ({ ...current, ...next }));
