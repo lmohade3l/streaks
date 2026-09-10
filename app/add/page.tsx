@@ -15,17 +15,10 @@ const MAX_TARGET = 12;
 const SHEET_MS = 320;
 
 export default function Add() {
-    const [draft, setDraft] = useState<Draft>(EMPTY_DRAFT);
+    const params = useSearchParams()
+    const [draft, setDraft] = useState<Draft>({...EMPTY_DRAFT , name: params.get('initializeName') || ''});
     const router = useRouter()
     const { createHabit } = useHabits();
-
-    const params = useSearchParams()
-    const initializeName = params.get('initializeName')
-
-    useEffect(() => {
-        if (!initializeName) return
-        setDraft((prev) => ({ ...prev, name: initializeName }))
-    }, [initializeName])
 
     const nameOk = draft.name.trim().length > 0;
     const patch = (next: Partial<Draft>) => setDraft((current) => ({ ...current, ...next }));
