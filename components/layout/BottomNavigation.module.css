@@ -3,10 +3,11 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 66px;
+  height: calc(66px + env(safe-area-inset-bottom));
   z-index: 100;
   background: var(--surface);
   padding-bottom: env(safe-area-inset-bottom);
+  border-top: 1px solid var(--ink-07)
 }
 
 

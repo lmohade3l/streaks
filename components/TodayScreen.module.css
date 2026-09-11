@@ -11,8 +11,6 @@
   flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  /* Bottom inset clears the floating CTA. */
-  padding: var(--pad-top) var(--gutter) calc(124px + env(safe-area-inset-bottom));
 }
 
 .header {
