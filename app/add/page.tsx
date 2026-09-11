@@ -2,10 +2,10 @@
 
 import Button from "@/components/ui/Button";
 import { Draft, Frequency } from "@/lib/types";
-import { useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 import s from './Add.module.css'
 import { useHabits } from "@/lib/useHabits";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const EMPTY_DRAFT: Draft = { name: '', freq: 'Daily', target: 1, reminder: true };
 
@@ -14,9 +14,9 @@ const MIN_TARGET = 1;
 const MAX_TARGET = 12;
 const SHEET_MS = 320;
 
-export default function Add() {
+function Add() {
     const params = useSearchParams()
-    const [draft, setDraft] = useState<Draft>({...EMPTY_DRAFT , name: params.get('initializeName') || ''});
+    const [draft, setDraft] = useState<Draft>({ ...EMPTY_DRAFT, name: params.get('initializeName') || '' });
     const router = useRouter()
     const { createHabit } = useHabits();
 
@@ -132,5 +132,13 @@ export default function Add() {
                 </form>
             </div>
         </main>
+    )
+}
+
+export default function AddPage() {
+    return (
+        <Suspense fallback={null}>
+            <Add />
+        </Suspense>
     )
 }
