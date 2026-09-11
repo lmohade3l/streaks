@@ -5,6 +5,8 @@
   flex-direction: column;
   overflow: hidden;
   background: var(--surface);
+  padding: var(--pad-top) var(--gutter) calc(90px + env(safe-area-inset-bottom));
+
 }
 
 .scroll {
