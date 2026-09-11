@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import HabitRow from './HabitRow';
 import WeekStrip from './WeekStrip';
 import s from './TodayScreen.module.css';
@@ -10,7 +9,7 @@ import { useRouter } from 'next/navigation';
 
 export default function TodayScreen() {
   const router = useRouter()
-  const { ready, habits, done, total, progressPct, allDone, dateLabel, week, tap, createHabit } =
+  const { ready, habits, done, total, progressPct, allDone, dateLabel, week, tap } =
     useHabits();
 
   const isEmpty = habits.length === 0

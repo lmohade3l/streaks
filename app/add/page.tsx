@@ -12,7 +12,6 @@ const EMPTY_DRAFT: Draft = { name: '', freq: 'Daily', target: 1, reminder: true 
 const FREQUENCIES: Frequency[] = ['Daily', 'Weekdays', '3× / week'];
 const MIN_TARGET = 1;
 const MAX_TARGET = 12;
-const SHEET_MS = 320;
 
 function Add() {
     const params = useSearchParams()

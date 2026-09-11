@@ -5,14 +5,13 @@
   flex-direction: column;
   overflow: hidden;
   background: var(--surface);
-  padding: var(--pad-top) var(--gutter) calc(90px + env(safe-area-inset-bottom));
-
 }
 
 .scroll {
   flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  padding: var(--pad-top) var(--gutter) calc(90px + env(safe-area-inset-bottom));
 }
 
 .header {
@@ -99,16 +98,6 @@
   line-height: 1.5;
   color: var(--accent);
   animation: rise-in 0.45s both;
-}
-
-.footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 18px var(--gutter) var(--pad-bottom);
-  /* List content fades out under the button rather than colliding with it. */
-  background: linear-gradient(to top, var(--surface) 58%, rgba(252, 252, 251, 0));
 }
 
 .ctaPlus {
