@@ -21,6 +21,7 @@ export default function Profile() {
                             ))}
                         </div>
                     </div>
+                    
 
                     {/* end of the day */}
                     <div className={s.itemBox}>
