@@ -1,6 +1,6 @@
 type THEME = 'system' | 'light' | 'dark'
-
 const THEME_KEY = 'streaks.theme'
+export const THEME_OPTIONS: THEME[] = ['system', 'light', 'dark']
 
 export function readTheme() {
     const savedTheme = localStorage.getItem(THEME_KEY)
@@ -16,5 +16,5 @@ export function saveTheme(t: THEME) {
 }
 
 export function applyTheme() {
-    
+
 }
