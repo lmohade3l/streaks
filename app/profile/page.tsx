@@ -2,6 +2,7 @@ import { THEME_OPTIONS } from '@/lib/theme'
 import s from './Profile.module.css'
 
 export default function Profile() {
+    const active = THEME_OPTIONS[0]
     return (
         <main className={s.screen}>
             <div className={s.scroll}>
@@ -17,7 +18,7 @@ export default function Profile() {
                         <p className={s.itemSupport}>System follows your device setting</p>
                         <div className={s.themeOptionsContainer}>
                             {THEME_OPTIONS?.map((o) => (
-                                <div key={o} className={s.themeOption}>{o}</div>
+                                <div key={o} className={`${s.themeOption} ${o===active ? s.active : ''}`}>{o}</div>
                             ))}
                         </div>
                     </div>
