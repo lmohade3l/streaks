@@ -21,7 +21,7 @@
     /* font-weight: 400 11.5px / 1 Outfit, sans-serif; */
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(23, 24, 26, 0.38);
+    color: var(--ink-38);
 }
 
 .subTitle {
@@ -30,13 +30,13 @@
     /* font-size: 300 34px / 1.1 Outfit, sans-serif; */
     letter-spacing: -0.03em;
     margin-top: 8px;
-    color: rgb(23, 24, 26);
+    color: var(--ink);
 }
 
 .itemsContainer {
     margin-top: 30px;
-    background: rgb(255, 255, 255);
-    border: 1px solid rgba(23, 24, 26, 0.08);
+    background: var(--on-accent);
+    border: 1px solid var(--ink-08);
     border-radius: 18px;
     overflow: hidden;
 }
@@ -48,7 +48,7 @@
 .themeOptionsContainer {
     display: flex;
     gap: 5px;
-    background: rgba(23, 24, 26, 0.043);
+    background: var(--ink-043);
     padding: 4px;
     border-radius: 14px;
     margin-top: 14px;
@@ -57,12 +57,12 @@
 .itemLabel {
     font: 400 15.5px / 1.2 Outfit, sans-serif;
     letter-spacing: -0.015em;
-    color: rgb(23, 24, 26);
+    color: var(--ink);
 }
 
 .itemSupport {
     font: 300 12.5px / 1.35 Outfit, sans-serif;
-    color: rgba(23, 24, 26, 0.42);
+    color: var(--ink-42);
     margin-top: 5px;
 }
 
@@ -74,11 +74,11 @@
     border-image: none;
     border-radius: 10px;
     padding: 11px 0px;
-    background: rgb(255, 255, 255);
-    color: rgb(23, 24, 26);
+    background: var(--on-accent);
+    color: var(--ink);
     font: 400 13.5px / 1 Outfit, sans-serif;
     cursor: pointer;
-    box-shadow: rgba(23, 24, 26, 0.1) 0px 1px 3px;
+    box-shadow: var(--ink-10) 0px 1px 3px;
     transition: background 0.2s, color 0.2s;
     display: flex;
     justify-content: center;
@@ -94,7 +94,7 @@
     border-radius: 10px;
     padding: 11px 0px;
     background: transparent;
-    color: rgba(23, 24, 26, 0.5);
+    color: var(--ink-50);
     font: 400 13.5px / 1 Outfit, sans-serif;
     cursor: pointer;
     box-shadow: none;
