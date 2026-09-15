@@ -103,3 +103,41 @@
     justify-content: center;
     align-items: center;
 }
+
+.list {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.listLeadingContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.listTrailingContainer {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-style: normal;
+    font-variant: tabular-nums;
+    font-size-adjust: none;
+    font-language-override: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    font-weight: 300;
+    font-stretch: normal;
+    font-size: 14.5px;
+    line-height: 1;
+    font-family: Outfit, sans-serif;
+    color: var(--ink-40);
+}
+
+.divider {
+    border-top: 1px solid var(--ink-07);
+    margin-left: 18px;
+    margin-right: 18px;
+}
