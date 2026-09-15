@@ -7,8 +7,8 @@ export default function Profile() {
         <main className={s.screen}>
             <div className={s.scroll}>
                 <div>
-                    <p className={s.title}>Settings</p>
-                    <p className={s.subTitle}>Profile</p>
+                    <div className={s.eyebrow}>Settings</div>
+                    <div className={s.title}>Profile</div>
                 </div>
 
                 <div className={s.itemsContainer}>
