@@ -1,9 +1,19 @@
-import { THEME_OPTIONS } from '@/lib/theme'
+'use client'
+
+import { readTheme, applyTheme, THEME, THEME_OPTIONS } from '@/lib/theme'
 import s from './Profile.module.css'
 import ChevronRight from '@/public/icons/chevron-right.svg'
+import { useState } from 'react'
 
 export default function Profile() {
-    const active = THEME_OPTIONS[0]
+    const active = readTheme()
+    const [theme , setTheme] = useState(active)
+
+    const handleChangeTheme = (theme: THEME) => {
+        setTheme(theme)
+        applyTheme(theme)
+    }
+    
     return (
         <main className={s.screen}>
             <div className={s.scroll}>
@@ -19,7 +29,7 @@ export default function Profile() {
                         <div className={s.itemSupport}>System follows your device setting</div>
                         <div className={s.themeOptionsContainer}>
                             {THEME_OPTIONS?.map((o) => (
-                                <div key={o} className={`${s.themeOption} ${o===active ? s.active : ''}`}>{o}</div>
+                                <div onClick={() => handleChangeTheme(o)} key={o} className={`${s.themeOption} ${o===active ? s.active : ''}`}>{o}</div>
                             ))}
                         </div>
                     </div>
@@ -38,7 +48,6 @@ export default function Profile() {
                                 <div>{'3:00 AM'}</div>
                                 <ChevronRight />
                             </div>
-
                         </div>
                     </div>
                 </div>
