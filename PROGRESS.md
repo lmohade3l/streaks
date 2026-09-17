@@ -15,7 +15,7 @@ with a UI prompt attached when the task needs design.
 ### Phase 2 — Shell
 - [x] 4. Button primitive (one component, a few variants) · ~50 min
 - [x] 5. Bottom nav: home / add / profile · ~50 min · design
-- [ ] 6. Profile screen, holds the theme toggle · ~60 min · design
+- [x] 6. Profile screen, holds the theme toggle · ~60 min · design
 - [x] 7. Create-habit becomes its own route, with a back button · ~50 min
 
 ### Phase 3 — Your own store, written from scratch
@@ -138,3 +138,4 @@ with a UI prompt attached when the task needs design.
 | 2026-09-05 | — | Added 12 tasks: milestones, clearer streak numbers, focus time + habit timers + coins, tests, design system, auth, admin panel, Android, Farsi UI, monorepo, custom end-of-day hour. Renumbered 1–39; the old list skipped 13. Two priority changes: tests moved up to 14 (ahead of every refactor that needs them), and the clearer streak number moved up to 8 (small, and the detail page should reuse whatever treatment it settles on). |
 | 2026-09-10 | — | Found `/add` wiping all data (it wrote before the store was read). Added Phase 3: rewrite the store from scratch in five steps, before any task that adds store actions. Everything from 8 on moved up by 5. |
 | 2026-09-11 | 5, 7 | Bottom nav + `/add` route done. `/add` is a nav tab, so it needs no back button. Caught on the way: `/add` wrote before the store was read and wiped all data; `useSearchParams` without `Suspense` broke the production build (dev never shows it — run `npm run build` before pushing). |
+| 2026-09-17 | 6 | Profile screen + working theme toggle done. Three lessons, each caught by testing: `'use client'` does not mean browser-only — client components still render on the server, so `localStorage` has to be read in an effect (dev returned 500, `next build` failed the same way); `data-theme` has only two meaningful values, so a three-way preference needs an explicit resolve step — CSS treats `'system'` exactly like a typo; and a function that both saved and applied made the "follow the device only on system" guard hard to write, and the first attempt silently deleted the user's explicit choice. Also fixed on the way: `--on-accent` used as a card background (invisible card in dark mode), and `--shadow-knob` where `--shadow-segment` belonged. |
