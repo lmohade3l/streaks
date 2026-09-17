@@ -94,6 +94,15 @@ with a UI prompt attached when the task needs design.
   every streak calculation reads. Days already logged must keep their existing
   `YYYY-MM-DD` key — the new hour applies from the day the setting changes forward,
   it does not retroactively re-bucket old entries.
+  Split `applyTheme` in lib/theme.ts before writing this. It both saves the
+  preference and paints `data-theme`, so the device-change listener in
+  components/ThemeProvider.tsx has to pretend "the user chose system" and write to
+  storage for nothing — the same coupling that once deleted an explicit choice, now
+  held back only by an `if` in the caller. Two functions: one that resolves a
+  preference and stamps the attribute, one that saves and then calls it. The
+  end-of-day setting needs the same save/apply pair, so doing it here pays twice.
+  Leave the inline script in app/layout.tsx duplicated on purpose — it runs before
+  first paint and cannot import anything.
 - **Task 25 (Persian calendar).** The completion log must stay keyed by Gregorian
   `YYYY-MM-DD` — only the *display* converts, never the storage. Also the Persian
   week starts Saturday, but `currentWeek()` in lib/date.ts is hardcoded Sunday-first.
