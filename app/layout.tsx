@@ -3,6 +3,7 @@ import { Outfit } from 'next/font/google';
 import ServiceWorker from '@/components/ServiceWorker';
 import './globals.css';
 import BottomNavigation from '@/components/layout/BottomNavigation';
+import { SystemThemeListener } from '@/components/SystemThemeListener';
 
 // next/font downloads Outfit at build time and serves it from our own origin,
 // so the app has no runtime dependency on Google Fonts.
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
+        <SystemThemeListener />
         <ServiceWorker />
         <BottomNavigation />
       </body>

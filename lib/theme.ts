@@ -3,9 +3,10 @@ const THEME_KEY = 'streaks.theme'
 export const THEME_OPTIONS: THEME[] = ['system', 'light', 'dark']
 
 export function readTheme() {
+    const localStorageSavedTheme = localStorage.getItem(THEME_KEY)
     const savedTheme =
-        localStorage.getItem(THEME_KEY) === 'light' ? 'light'
-            : localStorage.getItem(THEME_KEY) === 'dark' ? 'dark'
+        localStorageSavedTheme === 'light' ? 'light'
+            : localStorageSavedTheme === 'dark' ? 'dark'
                 : 'system'
 
     return savedTheme
