@@ -67,22 +67,9 @@
 }
 
 .themeOption.active {
-    flex: 1 1 0%;
-    border-width: medium;
-    border-style: none;
-    border-color: currentcolor;
-    border-image: none;
-    border-radius: 10px;
-    padding: 11px 0px;
-    background: var(--on-accent);
+    background: var(--card);
     color: var(--ink);
-    font: 400 13.5px / 1 Outfit, sans-serif;
-    cursor: pointer;
-    box-shadow: var(--ink-10) 0px 1px 3px;
-    transition: background 0.2s, color 0.2s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    box-shadow: var(--shadow-segment);
 }
 
 .themeOption {

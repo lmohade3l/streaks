@@ -6,7 +6,7 @@ export const THEME_OPTIONS: THEME[] = ['system', 'light', 'dark']
 
 export function readTheme() {
     const savedTheme = localStorage.getItem(THEME_KEY)
-    return savedTheme || 'system'
+    return (savedTheme || 'system') as THEME
 }
 
 export function saveTheme(theme: THEME) {
@@ -19,5 +19,6 @@ export function saveTheme(theme: THEME) {
 
 export function applyTheme(theme: THEME) {
     saveTheme(theme)
-    document.documentElement.setAttribute('data-theme', theme)
+    const newTheme = theme==='system' ? matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light' : theme
+    document.documentElement.setAttribute('data-theme', newTheme)
 }
