@@ -1,5 +1,3 @@
-'use client'
-
 export type THEME = 'system' | 'light' | 'dark'
 const THEME_KEY = 'streaks.theme'
 export const THEME_OPTIONS: THEME[] = ['system', 'light', 'dark']
