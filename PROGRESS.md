@@ -20,56 +20,58 @@ with a UI prompt attached when the task needs design.
 
 ### Phase 3 — Your own store, written from scratch
 - [x] 8. Step 1: `load()` and `save()` for localStorage — plain functions, no React · ~20 min
-- [ ] 9. Step 2: a `useHabits` hook with `useState` that loads on mount and saves on change · ~30 min
-- [ ] 10. Step 3: use it on two pages at once and watch the two copies drift apart · ~20 min
-- [ ] 11. Step 4: move the state out of React — one shared store, `subscribe`, `useSyncExternalStore` · ~45 min
-- [ ] 12. Step 5: delete the old `store.ts` / `useHabits.ts`, bring back day rollover · ~30 min
+- [ ] 9. Step 2: decide what the app stores — your own persisted shape, and the reasoning for it · ~40 min
+- [ ] 10. Step 3: point `load()` / `save()` at your shape, and build the derive layer it needs · ~60 min
+- [ ] 11. Step 4: a `useHabits` hook with `useState` that loads on mount and saves on change · ~30 min
+- [ ] 12. Step 5: use it on two pages at once and watch the two copies drift apart · ~20 min
+- [ ] 13. Step 6: move the state out of React — one shared store, `subscribe`, `useSyncExternalStore` · ~45 min
+- [ ] 14. Step 7: swap the UI over, delete the old store / hook / derive, bring back day rollover · ~45 min
 
 ### Phase 4 — Habit management
-- [ ] 13. Make the streak day count obvious on the Today screen · ~40 min · design
-- [ ] 14. Habit detail page · ~60 min · design
-- [ ] 15. Edit a habit (reuses the create form) · ~50 min
-- [ ] 16. Delete a habit + confirm step · ~40 min · design
-- [ ] 17. Archive a habit (hide without losing the log) · ~50 min · design
-- [ ] 18. EmptyState component: first-run + all-done · ~40 min
+- [ ] 15. Make the streak day count obvious on the Today screen · ~40 min · design
+- [ ] 16. Habit detail page · ~60 min · design
+- [ ] 17. Edit a habit (reuses the create form) · ~50 min
+- [ ] 18. Delete a habit + confirm step · ~40 min · design
+- [ ] 19. Archive a habit (hide without losing the log) · ~50 min · design
+- [ ] 20. EmptyState component: first-run + all-done · ~40 min
 
 ### Phase 5 — Data & correctness
-- [ ] 19. Test setup + first tests for `lib/` (date, derive, store) · ~60 min
-- [ ] 20. Move persistence to IndexedDB · ~60 min
-- [ ] 21. Make `freq` real (Weekdays / 3x week) + rest-day empty state · ~60 min
-- [ ] 22. Custom end-of-day hour (a day can end at 3 AM, not midnight) · ~60 min · design
+- [ ] 21. Test setup + first tests for `lib/` (date, derive, store) · ~60 min
+- [ ] 22. Move persistence to IndexedDB · ~60 min
+- [ ] 23. Make `freq` real (Weekdays / 3x week) + rest-day empty state · ~60 min
+- [ ] 24. Custom end-of-day hour (a day can end at 3 AM, not midnight) · ~60 min · design
 
 ### Phase 6 — History & language
-- [ ] 23. Tap a day in the week strip to see that day · ~60 min · design
-- [ ] 24. Calendar view per habit, on the detail page · ~2 sessions · design
-- [ ] 25. Persian / Gregorian calendar switch · ~2 sessions · design
-- [ ] 26. Farsi UI language + RTL layout · ~2 sessions · design
+- [ ] 25. Tap a day in the week strip to see that day · ~60 min · design
+- [ ] 26. Calendar view per habit, on the detail page · ~2 sessions · design
+- [ ] 27. Persian / Gregorian calendar switch · ~2 sessions · design
+- [ ] 28. Farsi UI language + RTL layout · ~2 sessions · design
 
 ### Phase 7 — Habits, reminders & streaks
-- [ ] 27. Reminder at a custom hour (replace hardcoded 8:00 PM) · ~50 min · design
-- [ ] 28. Real reminder notifications (permission + push + SW handler) · ~2 sessions
-- [ ] 29. Surface a broken streak to the user · ~40 min · design
-- [ ] 30. Milestones per habit + celebration when one is reached · ~2 sessions · design
-- [ ] 31. Streak freeze (skip a day without losing the streak) · ~60 min
-- [ ] 32. Habits with steps, e.g. a skincare routine · ~2 sessions · design
+- [ ] 29. Reminder at a custom hour (replace hardcoded 8:00 PM) · ~50 min · design
+- [ ] 30. Real reminder notifications (permission + push + SW handler) · ~2 sessions
+- [ ] 31. Surface a broken streak to the user · ~40 min · design
+- [ ] 32. Milestones per habit + celebration when one is reached · ~2 sessions · design
+- [ ] 33. Streak freeze (skip a day without losing the streak) · ~60 min
+- [ ] 34. Habits with steps, e.g. a skincare routine · ~2 sessions · design
 
 ### Phase 8 — Focus time
-- [ ] 33. Focus time section: a pomodoro timer · ~2 sessions · design
-- [ ] 34. Attach a timer to a habit · ~60 min · design
-- [ ] 35. Coins earned from focus time, spent on streak freezes · ~2 sessions · design
+- [ ] 35. Focus time section: a pomodoro timer · ~2 sessions · design
+- [ ] 36. Attach a timer to a habit · ~60 min · design
+- [ ] 37. Coins earned from focus time, spent on streak freezes · ~2 sessions · design
 
 ### Phase 9 — Entry experience & accounts
-- [ ] 36. Splash screen with logo animation · ~40 min · design
-- [ ] 37. Landing page for first open · ~50 min · design
-- [ ] 38. Login form UI · ~60 min · design
-- [ ] 39. Login validation + states · ~45 min
-- [ ] 40. Real authentication: accounts, sessions, sync · ~3 sessions
+- [ ] 38. Splash screen with logo animation · ~40 min · design
+- [ ] 39. Landing page for first open · ~50 min · design
+- [ ] 40. Login form UI · ~60 min · design
+- [ ] 41. Login validation + states · ~45 min
+- [ ] 42. Real authentication: accounts, sessions, sync · ~3 sessions
 
 ### Phase 10 — Platform
-- [ ] 41. Move the app into a monorepo · ~60 min
-- [ ] 42. Extract the design system into its own package · ~2 sessions
-- [ ] 43. Admin panel: users and their data · ~3 sessions · design
-- [ ] 44. Android version · ~3 sessions
+- [ ] 43. Move the app into a monorepo · ~60 min
+- [ ] 44. Extract the design system into its own package · ~2 sessions
+- [ ] 45. Admin panel: users and their data · ~3 sessions · design
+- [ ] 46. Android version · ~3 sessions
 ## Decided against
 - **A global app header.** The Today screen's large "Today" title already does a
   header's job, and a fixed bar above it would just cost vertical space. What the
@@ -78,19 +80,25 @@ with a UI prompt attached when the task needs design.
   scrolls away — then the answer is an iOS-style collapsing title, not a bar.
 
 ## Watch out for
-- **Tasks 8–12 (your own store).** Replace only `lib/store.ts` and `lib/useHabits.ts`.
-  Keep `derive.ts`, `date.ts`, `types.ts` and `seed.ts` — they are pure functions and
-  already right. Build the new store next to the old one and swap in step 5, so the
-  app keeps working in between. Whatever you write must still: read storage before
-  the first write; seed sample data in dev only; store habits + log and nothing else
-  (streak, count and trail stay derived); key days as local `YYYY-MM-DD`; render
-  nothing until storage is read, so server and client HTML match; and roll the day
-  over on `visibilitychange` and at midnight.
-- **Task 19 (tests) comes before the refactors on purpose.** IndexedDB (20), the
-  day boundary (22) and the design-system extraction (42) all rewrite code that
+- **Tasks 8–14 (your own store).** Scope decided 2026-09-20: the *persisted shape* is
+  yours too, not just the machinery. So `types.ts`, `derive.ts` and `seed.ts` are all
+  in scope — only `date.ts` is off limits, because local-calendar arithmetic is a
+  separate lesson (and task 21 will put tests on it). Build everything beside the old
+  files and swap in step 7, so the app keeps working in between.
+  Storage shape and render shape are two different decisions. The components read a
+  `HabitView` — a habit plus `count`, `streak`, `trail`, `complete`, `partial` — and
+  `toView` is the boundary that turns stored data into that. Keeping the view shape
+  while changing the stored shape is the cheap path: only the boundary moves, not the UI.
+  Whatever shape you land on must still: read storage before the first write; render
+  nothing until storage is read, so server and client HTML agree; key days as local
+  `YYYY-MM-DD` (never UTC, never a timestamp); keep every derived number out of storage
+  so it cannot drift; seed sample data in dev only; and roll the day over on
+  `visibilitychange` and at midnight.
+- **Task 21 (tests) comes before the refactors on purpose.** IndexedDB (22), the
+  day boundary (24) and the design-system extraction (44) all rewrite code that
   currently has nothing checking it. Write the tests against the code as it stands
   today, then refactor underneath them.
-- **Task 22 (custom end-of-day hour).** This changes `today()` in lib/date.ts, which
+- **Task 24 (custom end-of-day hour).** This changes `today()` in lib/date.ts, which
   every streak calculation reads. Days already logged must keep their existing
   `YYYY-MM-DD` key — the new hour applies from the day the setting changes forward,
   it does not retroactively re-bucket old entries.
@@ -103,30 +111,30 @@ with a UI prompt attached when the task needs design.
   end-of-day setting needs the same save/apply pair, so doing it here pays twice.
   Leave the inline script in app/layout.tsx duplicated on purpose — it runs before
   first paint and cannot import anything.
-- **Task 25 (Persian calendar).** The completion log must stay keyed by Gregorian
+- **Task 27 (Persian calendar).** The completion log must stay keyed by Gregorian
   `YYYY-MM-DD` — only the *display* converts, never the storage. Also the Persian
   week starts Saturday, but `currentWeek()` in lib/date.ts is hardcoded Sunday-first.
-- **Task 26 (Farsi UI) is separate from task 25.** One is the calendar system, the
+- **Task 28 (Farsi UI) is separate from task 27.** One is the calendar system, the
   other is interface language and text direction; either can ship without the other.
   The cost grows with every screen added, so the longer it waits, the bigger the
   RTL audit gets.
-- **Task 31 (streak freeze) ships before coins exist.** Give it a plain free
-  allowance to start — say one freeze a month. Task 35 then adds coins as a second
+- **Task 33 (streak freeze) ships before coins exist.** Give it a plain free
+  allowance to start — say one freeze a month. Task 37 then adds coins as a second
   way to earn them; it should not be the only way.
-- **Task 32 (habits with steps).** Changes the `Habit` shape, so it lands best after
-  IndexedDB (task 20) rather than before.
-- **Task 35 (coins) is not designed yet.** Open questions: what a focus session is
+- **Task 34 (habits with steps).** Changes the `Habit` shape, so it lands best after
+  IndexedDB (task 22) rather than before.
+- **Task 37 (coins) is not designed yet.** Open questions: what a focus session is
   worth, whether coins buy anything besides freezes, and whether an economy makes
   the app feel like a game in a way that helps or hurts. Decide that before building.
-- **Tasks 41–43 are one arc, in order.** Extracting a design system only pays off
+- **Tasks 43–45 are one arc, in order.** Extracting a design system only pays off
   once a second app consumes it, and that second app is the admin panel — which in
-  turn needs task 40 (real auth) to have anything to show. Monorepo first so the
+  turn needs task 42 (real auth) to have anything to show. Monorepo first so the
   package and the admin app land in their final home rather than being moved twice.
 
 ## Not possible as a PWA
 - **Home screen widget** — iOS widgets need WidgetKit in a native app; there is no
   web API for one. Android has none either. Would require shipping a real native
-  app (or Capacitor shell) alongside this. Task 44 (Android) is the first point at
+  app (or Capacitor shell) alongside this. Task 46 (Android) is the first point at
   which a widget becomes possible, and only on that platform.
 
 ## Log
@@ -149,3 +157,4 @@ with a UI prompt attached when the task needs design.
 | 2026-09-11 | 5, 7 | Bottom nav + `/add` route done. `/add` is a nav tab, so it needs no back button. Caught on the way: `/add` wrote before the store was read and wiped all data; `useSearchParams` without `Suspense` broke the production build (dev never shows it — run `npm run build` before pushing). |
 | 2026-09-17 | 6 | Profile screen + working theme toggle done. Three lessons, each caught by testing: `'use client'` does not mean browser-only — client components still render on the server, so `localStorage` has to be read in an effect (dev returned 500, `next build` failed the same way); `data-theme` has only two meaningful values, so a three-way preference needs an explicit resolve step — CSS treats `'system'` exactly like a typo; and a function that both saved and applied made the "follow the device only on system" guard hard to write, and the first attempt silently deleted the user's explicit choice. Also fixed on the way: `--on-accent` used as a card background (invisible card in dark mode), and `--shadow-knob` where `--shadow-segment` belonged. |
 | 2026-09-20 | 8 | `load()` / `save()` in lib/store.v2.ts, next to the old store. Lessons: localStorage can throw in three different places — reading the global, calling a method, and parsing what comes back — so the `try` has to start above `getItem`, not below it; a `catch` that re-throws is the same as no `catch`; `JSON.parse` succeeding does not mean the shape is right (`null`, `5`, `"hello"` all parse fine); and the `any` that `JSON.parse` returns switches the compiler off at exactly the line where validation lives — a `!== '1'` against a numeric `version` sailed through and rejected every good state. Left as hardening: `!=` still coerces, so `"1"`, `true` and `[1]` all pass as version 1. |
+| 2026-09-20 | — | Phase 3 reshaped after a fair complaint: "I wanted to write it from zero, but I am working backwards — the structure is yours and I am just retyping it." True. The persisted shape was handed over pre-made, so the design decisions were already spent. Evidence it was not sacred: `lastActiveDate` was written on every save and never read back. Phase 3 is now seven steps instead of five — the shape itself is task 9 and the derive layer task 10 — and `types.ts` / `derive.ts` / `seed.ts` moved into scope. Everything from the old 13 on is +2; 46 tasks now. |
