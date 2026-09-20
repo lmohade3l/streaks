@@ -19,7 +19,7 @@ with a UI prompt attached when the task needs design.
 - [x] 7. Create-habit becomes its own route, with a back button · ~50 min
 
 ### Phase 3 — Your own store, written from scratch
-- [ ] 8. Step 1: `load()` and `save()` for localStorage — plain functions, no React · ~20 min
+- [x] 8. Step 1: `load()` and `save()` for localStorage — plain functions, no React · ~20 min
 - [ ] 9. Step 2: a `useHabits` hook with `useState` that loads on mount and saves on change · ~30 min
 - [ ] 10. Step 3: use it on two pages at once and watch the two copies drift apart · ~20 min
 - [ ] 11. Step 4: move the state out of React — one shared store, `subscribe`, `useSyncExternalStore` · ~45 min
@@ -148,3 +148,4 @@ with a UI prompt attached when the task needs design.
 | 2026-09-10 | — | Found `/add` wiping all data (it wrote before the store was read). Added Phase 3: rewrite the store from scratch in five steps, before any task that adds store actions. Everything from 8 on moved up by 5. |
 | 2026-09-11 | 5, 7 | Bottom nav + `/add` route done. `/add` is a nav tab, so it needs no back button. Caught on the way: `/add` wrote before the store was read and wiped all data; `useSearchParams` without `Suspense` broke the production build (dev never shows it — run `npm run build` before pushing). |
 | 2026-09-17 | 6 | Profile screen + working theme toggle done. Three lessons, each caught by testing: `'use client'` does not mean browser-only — client components still render on the server, so `localStorage` has to be read in an effect (dev returned 500, `next build` failed the same way); `data-theme` has only two meaningful values, so a three-way preference needs an explicit resolve step — CSS treats `'system'` exactly like a typo; and a function that both saved and applied made the "follow the device only on system" guard hard to write, and the first attempt silently deleted the user's explicit choice. Also fixed on the way: `--on-accent` used as a card background (invisible card in dark mode), and `--shadow-knob` where `--shadow-segment` belonged. |
+| 2026-09-20 | 8 | `load()` / `save()` in lib/store.v2.ts, next to the old store. Lessons: localStorage can throw in three different places — reading the global, calling a method, and parsing what comes back — so the `try` has to start above `getItem`, not below it; a `catch` that re-throws is the same as no `catch`; `JSON.parse` succeeding does not mean the shape is right (`null`, `5`, `"hello"` all parse fine); and the `any` that `JSON.parse` returns switches the compiler off at exactly the line where validation lives — a `!== '1'` against a numeric `version` sailed through and rejected every good state. Left as hardening: `!=` still coerces, so `"1"`, `true` and `[1]` all pass as version 1. |
