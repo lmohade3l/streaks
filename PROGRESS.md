@@ -38,7 +38,7 @@ with a UI prompt attached when the task needs design.
 ### Phase 5 — Data & correctness
 - [ ] 21. Test setup + first tests for `lib/` (date, derive, store) · ~60 min
 - [ ] 22. Move persistence to IndexedDB · ~60 min
-- [ ] 23. Make `freq` real (Weekdays / 3x week) + rest-day empty state · ~60 min
+- [ ] 23. Make `freq` real (Daily / Weekdays) + rest-day empty state · ~50 min
 - [ ] 24. Custom end-of-day hour (a day can end at 3 AM, not midnight) · ~60 min · design
 
 ### Phase 6 — History & language
@@ -73,6 +73,14 @@ with a UI prompt attached when the task needs design.
 - [ ] 45. Admin panel: users and their data · ~3 sessions · design
 - [ ] 46. Android version · ~3 sessions
 ## Decided against
+- **"3× / week" as a frequency.** Dropped 2026-09-25 while designing the stored
+  shape. Daily and Weekdays are both per-day predicates — given a date you can answer
+  "does today count?" without looking at anything else. A weekly quota is a different
+  animal: "am I on track" depends on the whole week, so streak, trail and the rest-day
+  state all stop being answerable one day at a time. It was the single largest source
+  of complexity in task 23 and the app never honoured it anyway — `freq` is read
+  nowhere in derive.ts today. Still offered by the create form (app/add/page.tsx) and
+  still in the old `Frequency` union; both go when the new shape lands.
 - **A global app header.** The Today screen's large "Today" title already does a
   header's job, and a fixed bar above it would just cost vertical space. What the
   app actually needs is a *back button on secondary pages*, which each of those
@@ -158,3 +166,4 @@ with a UI prompt attached when the task needs design.
 | 2026-09-17 | 6 | Profile screen + working theme toggle done. Three lessons, each caught by testing: `'use client'` does not mean browser-only — client components still render on the server, so `localStorage` has to be read in an effect (dev returned 500, `next build` failed the same way); `data-theme` has only two meaningful values, so a three-way preference needs an explicit resolve step — CSS treats `'system'` exactly like a typo; and a function that both saved and applied made the "follow the device only on system" guard hard to write, and the first attempt silently deleted the user's explicit choice. Also fixed on the way: `--on-accent` used as a card background (invisible card in dark mode), and `--shadow-knob` where `--shadow-segment` belonged. |
 | 2026-09-20 | 8 | `load()` / `save()` in lib/store.v2.ts, next to the old store. Lessons: localStorage can throw in three different places — reading the global, calling a method, and parsing what comes back — so the `try` has to start above `getItem`, not below it; a `catch` that re-throws is the same as no `catch`; `JSON.parse` succeeding does not mean the shape is right (`null`, `5`, `"hello"` all parse fine); and the `any` that `JSON.parse` returns switches the compiler off at exactly the line where validation lives — a `!== '1'` against a numeric `version` sailed through and rejected every good state. Left as hardening: `!=` still coerces, so `"1"`, `true` and `[1]` all pass as version 1. |
 | 2026-09-20 | — | Phase 3 reshaped after a fair complaint: "I wanted to write it from zero, but I am working backwards — the structure is yours and I am just retyping it." True. The persisted shape was handed over pre-made, so the design decisions were already spent. Evidence it was not sacred: `lastActiveDate` was written on every save and never read back. Phase 3 is now seven steps instead of five — the shape itself is task 9 and the derive layer task 10 — and `types.ts` / `derive.ts` / `seed.ts` moved into scope. Everything from the old 13 on is +2; 46 tasks now. |
+| 2026-09-25 | 9 | Designing the stored shape turned up two fields of mine that never earned their place — `createdAt` (only seed.ts reads it) and `meta` (createHabit just copies `freq` into it; the form never asks). Both dropped. "3× / week" dropped too, see Decided against. |
