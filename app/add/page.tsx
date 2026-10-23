@@ -103,16 +103,16 @@ function Add() {
                             </div>
                         </div>
 
-                        <div className={`${s.settingRow} ${s.settingRowRule}`}>
+                        {/* <div className={`${s.settingRow} ${s.settingRowRule}`}>
                             <div>
                                 <div className={s.settingLabel}>Remind me</div>
                                 <div className={s.settingHint}>
                                     {draft.reminder ? 'Every day at 8:00 PM' : 'No notification'}
                                 </div>
-                            </div>
+                            </div> */}
                             {/* TODO(reminders): this only stores the preference. Scheduling needs
                 Notification permission + a push subscription; see lib/store.ts. */}
-                            <button
+                            {/* <button
                                 type="button"
                                 role="switch"
                                 aria-checked={draft.reminder}
@@ -122,7 +122,7 @@ function Add() {
                             >
                                 <span className={s.knob} />
                             </button>
-                        </div>
+                        </div> */}
                     </div>
 
                     <Button
