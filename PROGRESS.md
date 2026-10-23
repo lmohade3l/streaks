@@ -119,6 +119,13 @@ with a UI prompt attached when the task needs design.
   end-of-day setting needs the same save/apply pair, so doing it here pays twice.
   Leave the inline script in app/layout.tsx duplicated on purpose — it runs before
   first paint and cannot import anything.
+- **Tasks 29–30 (reminders) have to put the field back.** The stored shape dropped
+  `reminder` on 2026-10-23 — deferred, not rejected: nothing can act on it until push
+  notifications exist, so storing a flag the app never reads was dead weight. Two
+  loose ends until then. The create form still shows a reminder toggle, so it
+  collects a preference nothing keeps; decide whether to hide the toggle or let it
+  lie. And when it comes back, store the *hour* rather than a boolean — task 29 needs
+  a time anyway, and "off" is then the absence of a time.
 - **Task 27 (Persian calendar).** The completion log must stay keyed by Gregorian
   `YYYY-MM-DD` — only the *display* converts, never the storage. Also the Persian
   week starts Saturday, but `currentWeek()` in lib/date.ts is hardcoded Sunday-first.
