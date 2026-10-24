@@ -1,8 +1,8 @@
-import type { PersistedState } from "./types"
+import type { AppState } from "./types.v2";
 
 const HABITS_STATE_KEY = 'streaks.state'
 
-export function save(state: PersistedState) {
+export function save(state: AppState) {
     try {
         localStorage.setItem(HABITS_STATE_KEY, JSON.stringify(state))
     } catch {
@@ -10,7 +10,7 @@ export function save(state: PersistedState) {
     }
 }
 
-export function load(): PersistedState | null {
+export function load(): AppState | null {
     try {
         const savedState = localStorage.getItem(HABITS_STATE_KEY)
         if (!savedState) return null;

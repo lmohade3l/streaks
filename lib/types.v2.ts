@@ -1,14 +1,14 @@
-export type HABIT_FREQUNECY = 'daily' | 'weekdays'
+export type HabitFrequency = 'daily' | 'weekdays'
 
-export type HABIT = {
+export type Habit = {
     name: string,
-    logs: Record<string , number>[],
+    logs: Record<string , number>,
     id: string,
     target: number,
-    frequency: HABIT_FREQUNECY
+    frequency: HabitFrequency
 }
 
-export type State = {
-    habite: HABIT[],
-    version: string,
+export type AppState = {
+    habits: Habit[],
+    version: number,
 }
