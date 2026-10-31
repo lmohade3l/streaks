@@ -15,46 +15,6 @@
   padding: var(--pad-top) var(--gutter) calc(124px + env(safe-area-inset-bottom));
 }
 
-.scrim {
-  position: absolute;
-  inset: 0;
-  border: none;
-  padding: 0;
-  width: 100%;
-  background: var(--scrim);
-  animation: fade-in 0.22s both;
-}
-
-.scrimClosing {
-  animation: fade-out 0.22s both;
-}
-
-.sheet {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--card);
-  border-radius: 26px 26px 0 0;
-  padding: 11px var(--gutter) calc(30px + env(safe-area-inset-bottom));
-  box-shadow: var(--shadow-sheet);
-  max-height: 88%;
-  overflow-y: auto;
-  animation: sheet-up 0.32s var(--ease-sheet) both;
-}
-
-.sheetClosing {
-  animation: sheet-down 0.32s var(--ease-sheet) both;
-}
-
-.grabber {
-  width: 36px;
-  height: 4px;
-  border-radius: 99px;
-  background: var(--ink-13);
-  margin: 0 auto 20px;
-}
-
 .head {
   display: flex;
   align-items: center;
@@ -80,10 +40,6 @@
   margin-bottom: 10px;
 }
 
-.labelRepeat {
-  margin-top: 26px;
-}
-
 .input {
   width: 100%;
   border: 1px solid var(--ink-12);
@@ -103,46 +59,12 @@
   border-color: var(--accent);
 }
 
-.segments {
-  display: flex;
-  gap: 5px;
-  background: var(--ink-045);
-  padding: 4px;
-  border-radius: 14px;
-}
-
-.segment {
-  flex: 1;
-  border: none;
-  border-radius: 10px;
-  padding: 11px 0;
-  background: transparent;
-  color: var(--ink-50);
-  font-size: 13.5px;
-  font-weight: 400;
-  line-height: 1;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-
-.segmentOn {
-  background: var(--card);
-  color: var(--ink);
-  box-shadow: var(--shadow-segment);
-}
-
 .settingRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
   margin-top: 26px;
-}
-
-.settingRowRule {
-  margin: 22px 0 28px;
-  padding-top: 22px;
-  border-top: 1px solid var(--ink-07);
 }
 
 .settingLabel {
@@ -195,33 +117,6 @@
   font-weight: 400;
   line-height: 1;
   font-variant-numeric: tabular-nums;
-}
-
-.toggle {
-  width: 50px;
-  height: 31px;
-  flex: none;
-  border-radius: 99px;
-  border: none;
-  padding: 3px;
-  background: var(--ink-14);
-  cursor: pointer;
-  display: flex;
-  justify-content: flex-start;
-  transition: background 0.22s;
-}
-
-.toggleOn {
-  background: var(--accent);
-  justify-content: flex-end;
-}
-
-.knob {
-  width: 25px;
-  height: 25px;
-  border-radius: 99px;
-  background: #fff;
-  box-shadow: var(--knob);
 }
 
 .formLayout {
