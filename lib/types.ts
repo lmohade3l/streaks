@@ -1,5 +1,5 @@
-/** The three repeat options offered in the create sheet. */
-export type Frequency = 'Daily' | 'Weekdays' | '3× / week';
+/** The two repeat options offered in the create sheet. */
+export type Frequency = 'Daily' | 'Weekdays';
 
 /** A local calendar day, `YYYY-MM-DD`. Always local time, never UTC. */
 export type DateKey = string;
@@ -17,7 +17,6 @@ export type Habit = {
   freq: Frequency;
   /** Display note under the title ("Evening", "Weekdays", "5 min"). */
   meta: string;
-  reminder: boolean;
   createdAt: string;
 };
 
@@ -36,7 +35,6 @@ export type Draft = {
   name: string;
   freq: Frequency;
   target: number;
-  reminder: boolean;
 };
 
 /** A habit plus everything derived from the log for the current day. */

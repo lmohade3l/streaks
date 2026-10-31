@@ -1,15 +1,13 @@
 'use client'
 
 import Button from "@/components/ui/Button";
-import { Draft, Frequency } from "@/lib/types";
+import { Draft } from "@/lib/types";
 import { Suspense, useState } from "react";
 import s from './Add.module.css'
 import { useHabits } from "@/lib/useHabits";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const EMPTY_DRAFT: Draft = { name: '', freq: 'Daily', target: 1, reminder: true };
-
-const FREQUENCIES: Frequency[] = ['Daily', 'Weekdays', '3× / week'];
+const EMPTY_DRAFT: Draft = { name: '', freq: 'Daily', target: 1 };
 const MIN_TARGET = 1;
 const MAX_TARGET = 12;
 
@@ -34,8 +32,10 @@ function Add() {
                 <form
                     onSubmit={(event) => {
                         event.preventDefault();
-                        if (nameOk) createHabit({ ...draft, name: draft.name.trim() });
-                        router.push('/')
+                        if (nameOk) {
+                            createHabit({ ...draft, name: draft.name.trim() });
+                            router.push('/')
+                        }
                     }}
                     className={s.formLayout}
                 >
@@ -53,23 +53,6 @@ function Add() {
                             autoComplete="off"
                             enterKeyHint="done"
                         />
-
-                        <div className={`${s.label} ${s.labelRepeat}`} id="repeat-label">
-                            Repeat
-                        </div>
-                        <div className={s.segments} role="group" aria-labelledby="repeat-label">
-                            {FREQUENCIES.map((freq) => (
-                                <button
-                                    key={freq}
-                                    type="button"
-                                    className={`${s.segment} ${draft.freq === freq ? s.segmentOn : ''}`}
-                                    aria-pressed={draft.freq === freq}
-                                    onClick={() => patch({ freq })}
-                                >
-                                    {freq}
-                                </button>
-                            ))}
-                        </div>
 
                         <div className={s.settingRow}>
                             <div>
@@ -102,27 +85,6 @@ function Add() {
                                 </button>
                             </div>
                         </div>
-
-                        {/* <div className={`${s.settingRow} ${s.settingRowRule}`}>
-                            <div>
-                                <div className={s.settingLabel}>Remind me</div>
-                                <div className={s.settingHint}>
-                                    {draft.reminder ? 'Every day at 8:00 PM' : 'No notification'}
-                                </div>
-                            </div> */}
-                            {/* TODO(reminders): this only stores the preference. Scheduling needs
-                Notification permission + a push subscription; see lib/store.ts. */}
-                            {/* <button
-                                type="button"
-                                role="switch"
-                                aria-checked={draft.reminder}
-                                aria-label="Remind me"
-                                className={`${s.toggle} ${draft.reminder ? s.toggleOn : ''} tapTarget`}
-                                onClick={() => patch({ reminder: !draft.reminder })}
-                            >
-                                <span className={s.knob} />
-                            </button>
-                        </div> */}
                     </div>
 
                     <Button
