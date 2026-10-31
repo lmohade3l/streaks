@@ -10,7 +10,7 @@ type Seed = {
 };
 
 /**
- * The README's sample habits. Because streaks are derived, the log is
+ * The sample habits. Because streaks are derived, the log is
  * synthesised backwards from today to *produce* each streak — the dot trails
  * therefore follow from the log rather than being hand-authored like the
  * prototype's, and will differ slightly from the static mock.
