@@ -112,14 +112,10 @@ export function createHabit(draft: Draft): Habit {
     target: draft.target,
     freq: draft.freq,
     meta: draft.freq,
-    reminder: draft.reminder,
     createdAt: new Date().toISOString(),
   };
   commit({ habits: [...snapshot.habits, habit] });
 
-  // TODO(reminders): schedule the 8:00 PM local notification for this habit.
-  // Needs Notification.requestPermission() plus a push subscription posted to
-  // /api/reminders (a service-worker `push` handler shows it). On iOS this only
   // works once the PWA is installed to the home screen.
   return habit;
 }
