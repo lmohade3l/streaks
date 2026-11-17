@@ -28,7 +28,6 @@ export type PersistedState = {
   habits: Habit[];
   log: CompletionLog;
   /** The day the app last rendered, used to detect a rollover past midnight. */
-  lastActiveDate: DateKey;
 };
 
 export type Draft = {
