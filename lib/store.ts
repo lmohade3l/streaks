@@ -35,7 +35,6 @@ function save() {
     version: 1,
     habits: snapshot.habits,
     log: snapshot.log,
-    lastActiveDate: snapshot.day,
   };
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
