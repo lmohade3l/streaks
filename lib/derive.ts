@@ -56,7 +56,6 @@ export function streakLabel(streak: number): string {
   return `${streak} day${streak === 1 ? '' : 's'}`;
 }
 
-/** Count habits show today's progress; simple habits show their own note. */
-export function metaLabel(habit: HabitView): string {
-  return habit.target > 1 ? `${habit.count} of ${habit.target}` : habit.meta;
+export function freqLabel(habit: HabitView): string {
+  return habit.target > 1 ? `${habit.count} of ${habit.target}` : habit.freq;
 }

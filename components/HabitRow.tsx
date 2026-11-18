@@ -1,4 +1,4 @@
-import { metaLabel, streakLabel } from '@/lib/derive';
+import { freqLabel, streakLabel } from '@/lib/derive';
 import type { HabitView } from '@/lib/types';
 import s from './HabitRow.module.css';
 
@@ -18,7 +18,7 @@ export default function HabitRow({
     <li className={`${s.row} ${habit.complete ? s.rowComplete : ''}`}>
       <div className={s.body}>
         <div className={`${s.name} ${habit.complete ? s.nameComplete : ''}`}>{habit.name}</div>
-        <div className={s.meta}>
+        <div className={s.freq}>
           <div className={s.trail} aria-hidden="true">
             {habit.trail.map((hit, i) => (
               <div
@@ -29,7 +29,7 @@ export default function HabitRow({
           </div>
           <div className={`${s.streak} ${hot ? s.streakHot : ''}`}>{streakLabel(habit.streak)}</div>
           <div className={s.divider} aria-hidden="true" />
-          <div className={s.note}>{metaLabel(habit)}</div>
+          <div className={s.note}>{freqLabel(habit)}</div>
         </div>
       </div>
 

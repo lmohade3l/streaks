@@ -35,7 +35,7 @@
   text-decoration: line-through;
 }
 
-.meta {
+.freq {
   display: flex;
   align-items: center;
   gap: 10px;
