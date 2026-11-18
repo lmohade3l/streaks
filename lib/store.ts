@@ -62,7 +62,8 @@ export function init() {
 
   const stored = read();
   if (stored) {
-    commit({ ready: true, habits: stored.habits, log: stored.log, day: todayKey() });
+    // set freq to the only available value for now - change in B8
+    commit({ ready: true, habits: stored.habits.map(h => ({...h , meta: undefined , freq:'Daily' })), log: stored.log, day: todayKey() });
     return;
   }
 
@@ -110,12 +111,10 @@ export function createHabit(draft: Draft): Habit {
     name: draft.name.trim(),
     target: draft.target,
     freq: draft.freq,
-    meta: draft.freq,
     createdAt: new Date().toISOString(),
   };
   commit({ habits: [...snapshot.habits, habit] });
 
-  // works once the PWA is installed to the home screen.
   return habit;
 }
 

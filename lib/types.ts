@@ -1,5 +1,4 @@
-/** The two repeat options offered in the create sheet. */
-export type Frequency = 'Daily' | 'Weekdays';
+export type Frequency = 'Daily';
 
 /** A local calendar day, `YYYY-MM-DD`. Always local time, never UTC. */
 export type DateKey = string;
@@ -15,8 +14,6 @@ export type Habit = {
   /** 1 = simple habit, >1 = count habit. */
   target: number;
   freq: Frequency;
-  /** Display note under the title ("Evening", "Weekdays", "5 min"). */
-  meta: string;
   createdAt: string;
 };
 
@@ -27,7 +24,6 @@ export type PersistedState = {
   version: 1;
   habits: Habit[];
   log: CompletionLog;
-  /** The day the app last rendered, used to detect a rollover past midnight. */
 };
 
 export type Draft = {
