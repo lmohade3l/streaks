@@ -9,6 +9,14 @@ The interesting parts are small but easy to get wrong: a streak that holds throu
 today, a day that rolls over while the app is open, and a first screen that the server
 and the browser render identically.
 
+<p>
+  <img src="docs/screenshots/today-light.png" alt="The Today screen in the light theme" width="300">
+  <img src="docs/screenshots/today-dark.png" alt="The Today screen in the dark theme" width="300">
+</p>
+
+The screenshots use sample habits. The live demo starts empty: pick one of the
+suggestions on the first screen to create your first habit.
+
 ## Features
 
 - One tap marks a habit done. Tapping again undoes it.
